@@ -11,6 +11,7 @@ class User {
     private String $username;
     private String $firstName;
     private String $lastName;
+    private String $email;
     private UserType $type;
 
     public function getId() : int {
@@ -29,15 +30,20 @@ class User {
         return $this->lastName;
     }
 
+    public function getEmail() : String {
+        return $this->email;
+    }
+
     public function getType() : UserType {
         return $this->type;
     }
 
-    public function __construct(int $id, String &$username, String &$firstName, String &$lastName, UserType $type) {
+    public function __construct(int $id, String &$username, String &$firstName, String &$lastName, String &$email, UserType $type) {
         $this->id = $id;
         $this->username = $username;
         $this->firstName = $firstName;
         $this->lastName = $lastName;
+        $this->email = $email;
         $this->type = $type;
     }
 
