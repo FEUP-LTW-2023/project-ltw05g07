@@ -1,3 +1,3 @@
-<?php function getDatabaseConnection() : PDO {
+<?php function &getDatabaseConnection() : PDO {
     return new PDO('sqlite:database/news.db');
 } ?>
