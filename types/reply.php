@@ -21,7 +21,7 @@ class Reply {
         return $this->date;
     }
 
-    public function __construct(int $id, User $author, String &$comment, DateTime $date) {
+    public function __construct(int $id, User &$author, String &$comment, DateTime &$date) {
         $this->id = $id;
         $this->author = $author;
         $this->comment = $comment;

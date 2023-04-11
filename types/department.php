@@ -24,7 +24,7 @@ class Department {
         return $this->admins;
     }
 
-    public function __construct(int $id, String $name, array $agents, array $admins) {
+    public function __construct(int $id, String &$name, array &$agents, array &$admins) {
         $this->id = $id;
         $this->name = $name;
         $this->agents = $agents;

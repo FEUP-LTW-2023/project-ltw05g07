@@ -43,7 +43,7 @@ class Ticket {
         return $this->date;
     }
 
-    public function __construct(int $id, String &$subject, String &$content, array &$hashtags, array $replies, array $statusHistory, DateTime $date) {
+    public function __construct(int $id, String &$subject, String &$content, array &$hashtags, array &$replies, array &$statusHistory, DateTime &$date) {
         $this->id = $id;
         $this->subject = $subject;
         $this->content = $content;

@@ -20,7 +20,7 @@ function getTicketState(String $stateString) : ?TicketState {
     }
 }
 
-function getStatusHistory(PDO &$db, int $ticketId) : array {
+function &getStatusHistory(PDO &$db, int $ticketId) : array {
     $stmt = $db->prepare('SELECT * FROM ticket_ticket_status JOIN ticket_status ON ticket_ticket_status.ticket_status_id = ticket_status.id WHERE ticket_id = ?;');
     $stmt->execute(array($ticketId));
     $statusHistoryRaw = $stmt->fetchAll();

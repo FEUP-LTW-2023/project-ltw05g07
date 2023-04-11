@@ -2,7 +2,7 @@
 
 require_once('../department.php');
 
-function getDepartmentAgents(PDO &$db, int $departmentId) : array {
+function &getDepartmentAgents(PDO &$db, int $departmentId) : array {
     $stmt = $db->prepare('SELECT * FROM agent_department WHERE department_id = ?;');
     $stmt->execute(array($departmentId));
     $agentsRaw = $stmt->fetchAll();
@@ -16,7 +16,7 @@ function getDepartmentAgents(PDO &$db, int $departmentId) : array {
     return $agents;
 }
 
-function getDepartmentAdmins(PDO &$db, int $departmentId) : array {
+function &getDepartmentAdmins(PDO &$db, int $departmentId) : array {
     $stmt = $db->prepare('SELECT * FROM admin_department WHERE department_id = ?;');
     $stmt->execute(array($departmentId));
     $adminsRaw = $stmt->fetchAll();
@@ -31,16 +31,19 @@ function getDepartmentAdmins(PDO &$db, int $departmentId) : array {
 }
 
 
-function getDepartment(PDO &$db, int $id) : Department {
+function &getDepartment(PDO &$db, int $id) : Department {
     $stmt = $db->prepare('SELECT * FROM department WHERE id = ?;');
     $stmt->execute(array($id));
     $department = $stmt->fetch();
 
+    $agents = getDepartmentAgents($db, $id);
+    $admins = getDepartmentAdmins($db, $id);
+
     return new Department(
         $id,
         $department['name'],
-        getDepartmentAgents($db, $id),
-        getDepartmentAdmins($db, $id)
+        $agents,
+        $admins
     );
 }
 
