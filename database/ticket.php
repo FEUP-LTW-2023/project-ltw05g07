@@ -8,12 +8,14 @@ require_once('reply.php');
 
 require_once('utils.php');
 
-function getTicket(PDO &$db, int $id) : Ticket {
+function &getTicket(PDO &$db, int $id) : Ticket {
     $stmt = $db->prepare('SELECT * FROM ticket WHERE id = ?;');
     $stmt->execute(array($id));
     $ticket = $stmt->fetchAll();
 
     $replies = getReplies($db, $id);
+    $statusHistory = getStatusHistory($db, $id);
+    $dateTime = getDateTimeFromString($ticket['post_date']);
 
     return new Ticket(
         $id,
@@ -21,8 +23,8 @@ function getTicket(PDO &$db, int $id) : Ticket {
         $ticket['content'],
         $ticket['hashtags'],
         $replies,
-        getStatusHistory($db, $id),
-        getDateTimeFromString($ticket['post_date']),
+        $statusHistory,
+        $dateTime,
     );
 
 }

@@ -2,7 +2,7 @@
 
 require_once('utils.php');
 
-function getReplies(PDO &$db, int $ticketId) : array {
+function &getReplies(PDO &$db, int $ticketId) : array {
     $stmt = $db->prepare('SELECT * FROM reply WHERE ticket_id = ?;');
     $stmt->execute(array($ticketId));
     $repliesRaw = $stmt->fetchAll();
@@ -10,11 +10,14 @@ function getReplies(PDO &$db, int $ticketId) : array {
     $replies = array();
 
     foreach($repliesRaw as $replyRaw) {
+        $user = getUser($db, $replyRaw['user_id']);
+        $date = getDateTimeFromString($replyRaw['reply_date']);
+
         array_push($replies, new Reply(
             $replyRaw['id'],
-            getUser($db, $replyRaw['user_id']),
+            $user,
             $replyRaw['comment'],
-            getDateTimeFromString($replyRaw['reply_date']),
+            $date,
         ));
     }
 

@@ -43,15 +43,7 @@ class Ticket {
         return $this->date;
     }
 
-    public function addReply(Reply &$reply) : void {
-        array_push($this->replies, $reply);
-    }
-
-    public function updateStatus(TicketStatus &$status) : void {
-        array_push($this->statusHistory, $status);
-    }
-
-    public function __construct(int $id, String &$subject, String &$content, array &$hashtags, array $replies, array $statusHistory, DateTime $date) {
+    public function __construct(int $id, String &$subject, String &$content, array &$hashtags, array &$replies, array &$statusHistory, DateTime &$date) {
         $this->id = $id;
         $this->subject = $subject;
         $this->content = $content;
