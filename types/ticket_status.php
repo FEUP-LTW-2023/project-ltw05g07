@@ -24,7 +24,7 @@ class TicketStatus {
         return $this->date;
     }
 
-    public function __construct(int $id, TicketState $state, DateTime &$date) {
+    public function __construct(int $id, TicketState $state, DateTime $date) {
         $this->id = $id;
         $this->state = $state;
         $this->date = $date;

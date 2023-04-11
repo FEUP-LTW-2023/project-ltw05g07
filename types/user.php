@@ -38,7 +38,7 @@ class User {
         return $this->type;
     }
 
-    public function __construct(int $id, String &$username, String &$firstName, String &$lastName, String &$email, UserType $type) {
+    public function __construct(int $id, String $username, String $firstName, String $lastName, String $email, UserType $type) {
         $this->id = $id;
         $this->username = $username;
         $this->firstName = $firstName;

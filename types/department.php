@@ -36,9 +36,11 @@ class Department {
             print('User is not an agent.\n');
     }
 
-    public function __construct(int $id, String &$name) {
+    public function __construct(int $id, String $name, array $agents, array $admins) {
         $this->id = $id;
         $this->name = $name;
+        $this->agents = $agents;
+        $this->admins = $admins;
     }
 }
 

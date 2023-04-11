@@ -51,11 +51,13 @@ class Ticket {
         array_push($this->statusHistory, $status);
     }
 
-    public function __construct(int $id, String &$subject, String &$content, array &$hashtags, DateTime &$date) {
+    public function __construct(int $id, String &$subject, String &$content, array &$hashtags, array $replies, array $statusHistory, DateTime $date) {
         $this->id = $id;
         $this->subject = $subject;
         $this->content = $content;
         $this->$hashtags = $hashtags;
+        $this->replies = $replies;
+        $this->statusHistory = $statusHistory;
         $this->date = $date;
     }
 }
