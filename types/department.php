@@ -5,8 +5,8 @@ require_once('user.php');
 class Department {
     private int $id;
     private String $name;
-    private array $agents = array();
-    private array $admins = array();
+    private array $agents;
+    private array $admins;
     
     public function getId() : int {
         return $this->id;
@@ -22,18 +22,6 @@ class Department {
 
     public function getAdmins() : array {
         return $this->admins;
-    }
-
-    public function addAgent(User &$user) : void {
-        $user->getType() == UserType::Agent ?
-            array_push($this->agents, $user) :
-            print('User is not an agent.\n');
-    }
-
-    public function addAdmin(User &$user) : void {
-        $user->getType() == UserType::Admin ?
-            array_push($this->admins, $user) :
-            print('User is not an agent.\n');
     }
 
     public function __construct(int $id, String $name, array $agents, array $admins) {
