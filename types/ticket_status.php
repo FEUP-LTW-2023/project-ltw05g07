@@ -5,6 +5,24 @@ enum TicketState {
     case Assigned;
     case Closed;
     case Resolved;
+
+    public function __toString() : String {
+        return match($this) {
+            TicketState::Open => 'open',
+            TicketState::Assigned => 'assigned',
+            TicketState::Closed => 'closed',
+            TicketState::Resolved => 'resolved'
+        };
+    }
+
+    public static function fromString(String &$stateString) : TicketState {
+        return match($stateString) {
+            'open' => TicketState::Open,
+            'assigned' => TicketState::Assigned,
+            'closed' => TicketState::Closed,
+            'resolved' => TicketState::Resolved
+        };
+    }
 }
 
 class TicketStatus {
