@@ -5,23 +5,14 @@ require_once('../ticket_status.php');
 
 require_once('utils.php');
 
-function getTicketState(String $stateString) : ?TicketState {
-    switch ($stateString) {
-        case 'open':
-            return TicketState::Open;
-        case 'closed':
-            return TicketState::Closed;
-        case 'assigned':
-            return TicketState::Assigned;
-        case 'resolved':
-            return TicketState::Resolved;
-        default:
-            return null;
-    }
-}
-
 function &getStatusHistory(PDO &$db, int $ticketId) : array {
-    $stmt = $db->prepare('SELECT * FROM ticket_ticket_status JOIN ticket_status ON ticket_ticket_status.ticket_status_id = ticket_status.id WHERE ticket_id = ?;');
+    $stmt = $db->prepare(
+        'SELECT *
+        FROM ticket_ticket_status
+        JOIN ticket_status
+        ON ticket_ticket_status.ticket_status_id = ticket_status.id
+        WHERE ticket_id = ?;'
+    );
     $stmt->execute(array($ticketId));
     $statusHistoryRaw = $stmt->fetchAll();
 
@@ -30,12 +21,77 @@ function &getStatusHistory(PDO &$db, int $ticketId) : array {
     foreach($statusHistoryRaw as $statusRaw) {
         array_push($statusHistory, new TicketStatus (
             $statusRaw['ticket_status_id'],
-            getTicketState($statusRaw['status']),
+            TicketState::fromString($statusRaw['status']),
             getDateTimeFromString($statusRaw['change_status_date'])
         ));
     }
 
     return $statusHistory;
+}
+
+function getLastTicketStateId(PDO &$db) : int {
+    $stmt = $db->prepare(
+        'SELECT id
+        FROM ticket_status_id
+        ORDER BY id DESC
+        LIMIT 1;'
+    );
+    $stmt->execute();
+    $id = $stmt->fetch();
+    return intval($id);
+}
+
+function getLastTicketStatusId(PDO &$db) : int {
+    $stmt = $db->prepare(
+        'SELECT id
+        FROM ticket_ticket_status_id
+        ORDER BY id DESC
+        LIMIT 1;'
+    );
+    $stmt->execute();
+    $id = $stmt->fetch();
+    return intval($id);
+}
+
+function getLatestState(PDO &$db, int $ticketId) : TicketState {
+    $stmt = $db->prepare(
+        'SELECT status
+        FROM ticket_status
+        LEFT JOIN ticket_ticket_status
+        ON ticket_status.id = ticket_ticket_status.ticket_status_id
+        WHERE ticket_id = ?
+        ORDER BY ticket_status_id 
+        LIMIT 1;'
+    );
+    $stmt->execute(array($ticketId));
+    $state = $stmt->fetch();
+    return TicketState::fromString($state);
+}
+
+function updateStatus(PDO &$db, int $ticketId, ?TicketState $state = null) : void {
+    $stmt = $db->prepare(
+        'INSERT INTO ticket_status(id, status, change_status_date) 
+        ALUES(?, ?, ?);');
+    
+    $ticketStateId = getLastTicketStateId($db) + 1;
+    $ticketStatusId = getLastTicketStatusId($db) + 1;
+
+    $stmt->execute(array(
+        $ticketStateId,
+        $state ? strval($state) : strval(getLatestState($db, $ticketId)),
+        date('Y-m-d H:i:s')
+    ));
+
+    $stmt = $db->prepare(
+        'INSERT INTO ticket_ticket_status(id, ticket_id, ticket_status_id)
+        VALUES(?, ?, ?);'
+    );
+    $stmt->execute(array(
+        $ticketStatusId,
+        $ticketId,
+        $ticketStateId
+    ));
+
 }
 
 ?>
