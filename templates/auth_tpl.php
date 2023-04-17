@@ -4,7 +4,7 @@
         <header>
             <h1>Welcome Back</h1>
         </header>
-        <form method="post">
+        <form action="../actions/action_login.php" method="post">
             <input type="text" name="username" placeholder="Username" required>
             <input type="password" name="password" placeholder="Password" required>
             <button type="submit">Login</button>
@@ -22,7 +22,7 @@
         <header>
             <h1>Welcome</h1>
         </header>
-        <form method="post">
+        <form action="../actions/action_register.php" method="post">
             <input type="text" name="firstName" placeholder="First Name" required>
             <input type="text" name="lastName" placeholder="Last Name" required>
             <input type="text" name="username" placeholder="Username" required>

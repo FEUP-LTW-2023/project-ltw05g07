@@ -16,100 +16,88 @@ DROP TABLE IF EXISTS admin_department;
 
 
 CREATE TABLE users (
-    id INT NOT NULL,
+    id INTEGER PRIMARY KEY,
     username VARCHAR(255) NOT NULL,
-    first_name VARCHAR(255) NOT NULL,
+    first_name VARCHAR(255) NOT NULL,   
     last_name VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL,
-    password VARCHAR(255) NOT NULL,
-    PRIMARY KEY (id)
+    password VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE client (
-    id INT NOT NULL,
-    PRIMARY KEY (id),
+    id INTEGER PRIMARY KEY,
     FOREIGN KEY (id) REFERENCES users(id)
 );
 
 CREATE TABLE admin (
-    id INT NOT NULL,
-    PRIMARY KEY (id),
+    id INTEGER PRIMARY KEY,
     FOREIGN KEY (id) REFERENCES users(id)
 );
 
 CREATE TABLE agent (
-    id INT NOT NULL,
-    PRIMARY KEY (id),
+    id INTEGER PRIMARY KEY,
     FOREIGN KEY (id) REFERENCES users(id)
 );
 
 CREATE TABLE ticket (
-    id INT NOT NULL,
-    user_id INT NOT NULL,
+    id INTEGER PRIMARY KEY,
+    user_id INTEGER NOT NULL,
     subject VARCHAR(255) NOT NULL,
     content TEXT NOT NULL,
     hashtags VARCHAR(255) NOT NULL,
     post_date DATETIME NOT NULL,
-    PRIMARY KEY (id),
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
 CREATE TABLE reply (
-    id INT NOT NULL,
-    ticket_id INT NOT NULL,
-    user_id INT NOT NULL,
+    id INTEGER PRIMARY KEY,
+    ticket_id INTEGER NOT NULL,
+    user_id INTEGER NOT NULL,
     comment TEXT NOT NULL,
     reply_date DATETIME NOT NULL,
-    PRIMARY KEY (id),
     FOREIGN KEY (ticket_id) REFERENCES tickets(id),
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
 CREATE TABLE department (
-    id INT NOT NULL,
-    name VARCHAR(255) NOT NULL,
-    PRIMARY KEY (id)
+    id IINTEGER PRIMARY KEY,
+    name VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE ticket_status (
-    id INT NOT NULL,
+    id INTEGER PRIMARY KEY,
     status TEXT CHECK(status IN ('open', 'closed', 'assigned', 'resolved')) NOT NULL,
-    change_status_date DATETIME NOT NULL,
-    PRIMARY KEY (id)
+    change_status_date DATETIME NOT NULL
 );
 
 CREATE TABLE ticket_department (
-    id INT NOT NULL,
-    ticket_id INT NOT NULL,
-    department_id INT NOT NULL,
-    PRIMARY KEY (id),
+    id INTEGER PRIMARY KEY,
+    ticket_id INTEGER NOT NULL,
+    department_id INTEGER NOT NULL,
     FOREIGN KEY (ticket_id) REFERENCES tickets(id),
     FOREIGN KEY (department_id) REFERENCES departments(id)
 );
 
 CREATE TABLE ticket_ticket_status (
-    id INT NOT NULL,
+    id INTEGER PRIMARY KEY,
     ticket_id INT NOT NULL,
     ticket_status_id INT NOT NULL,
-    PRIMARY KEY (id),
     FOREIGN KEY (ticket_id) REFERENCES tickets(id),
     FOREIGN KEY (ticket_status_id) REFERENCES ticket_status(id)
 );
 
 CREATE TABLE agent_department (
-    id INT NOT NULL,
-    agent_id INT NOT NULL,
-    department_id INT NOT NULL,
-    PRIMARY KEY (id),
+    id INTEGER PRIMARY KEY,
+    agent_id INTEGER NOT NULL,
+    department_id INTEGER NOT NULL,
     FOREIGN KEY (agent_id) REFERENCES agents(id),
     FOREIGN KEY (department_id) REFERENCES departments(id)
 );
 
 CREATE TABLE admin_department (
-    id INT NOT NULL,
-    admin_id INT NOT NULL,
-    department_id INT NOT NULL,
-    PRIMARY KEY (id),
+    id INTEGER PRIMARY KEY,
+    admin_id INTEGER NOT NULL,
+    department_id INTEGER NOT NULL,
     FOREIGN KEY (admin_id) REFERENCES admins(id),
     FOREIGN KEY (department_id) REFERENCES departments(id)
 );
