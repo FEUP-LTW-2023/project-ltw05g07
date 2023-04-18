@@ -26,31 +26,15 @@ function &getStatusHistory(PDO &$db, int $ticketId) : array {
         ));
     }
 
+    uasort($statusHistory, function($a, $b) {
+        $d1 = $a->getDate();
+        $d2 = $b->getDate();
+
+        if ($d1 == $d2) return 0;
+        return $d1 < $d2 ? 1 : -1;
+    });
+
     return $statusHistory;
-}
-
-function getLastTicketStateId(PDO &$db) : int {
-    $stmt = $db->prepare(
-        'SELECT id
-        FROM ticket_status_id
-        ORDER BY id DESC
-        LIMIT 1;'
-    );
-    $stmt->execute();
-    $id = $stmt->fetch();
-    return intval($id);
-}
-
-function getLastTicketStatusId(PDO &$db) : int {
-    $stmt = $db->prepare(
-        'SELECT id
-        FROM ticket_ticket_status_id
-        ORDER BY id DESC
-        LIMIT 1;'
-    );
-    $stmt->execute();
-    $id = $stmt->fetch();
-    return intval($id);
 }
 
 function getLatestState(PDO &$db, int $ticketId) : TicketState {
@@ -70,24 +54,31 @@ function getLatestState(PDO &$db, int $ticketId) : TicketState {
 
 function updateStatus(PDO &$db, int $ticketId, ?TicketState $state = null) : void {
     $stmt = $db->prepare(
-        'INSERT INTO ticket_status(id, status, change_status_date) 
-        ALUES(?, ?, ?);');
+        'INSERT INTO ticket_status(status, change_status_date) 
+        ALUES(?, ?);');
     
-    $ticketStateId = getLastTicketStateId($db) + 1;
-    $ticketStatusId = getLastTicketStatusId($db) + 1;
 
     $stmt->execute(array(
-        $ticketStateId,
-        $state ? strval($state) : strval(getLatestState($db, $ticketId)),
+        $state?->toString() ?? getLatestState($db, $ticketId)->toString(),
         date('Y-m-d H:i:s')
     ));
 
     $stmt = $db->prepare(
-        'INSERT INTO ticket_ticket_status(id, ticket_id, ticket_status_id)
+        'SELECT id
+        FROM ticket_status
+        ORDER BY id DESC
+        LIMIT 1;'
+    );
+
+    $stmt->execute();
+    $ticketStateId = $stmt->fetch()['id'];
+
+    $stmt = $db->prepare(
+        'INSERT INTO ticket_ticket_status(ticket_id, ticket_status_id)
         VALUES(?, ?, ?);'
     );
+
     $stmt->execute(array(
-        $ticketStatusId,
         $ticketId,
         $ticketStateId
     ));
