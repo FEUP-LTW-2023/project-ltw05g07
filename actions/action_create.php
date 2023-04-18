@@ -7,7 +7,7 @@
     $db = getDatabaseConnection();
 
 
-    if($user == null){
+    if($_SESSION['username'] == null){
         header('Location: ../pages/login.php');
         echo("Must be logged in!");
     }
@@ -25,6 +25,6 @@
     }
     else {
         echo "sucess";
-        createTicket($db,getLastUserId($db),$_POST['subject'],$_POST['content'],$_POST['hashtag']);
+        createTicket($db,$_SESSION['id'],$_POST['subject'],$_POST['content'],$_POST['hashtag']);
     }
 ?>

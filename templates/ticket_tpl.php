@@ -2,12 +2,17 @@
 require_once('../database/connection.php');
 require_once('../database/user.php');
 
+$db = getDatabaseConnection();
+
 function view() 
 {?>
     <section id = "view">
         <header>
             <h1>My Tickets</h1>
         </header>
+        <footer>
+            <p>Want to create a ticket? <a href="create.php">Create ticket</a></p>
+        </footer>
 <?php } ?>
 
 <? function create() 
@@ -23,7 +28,7 @@ function view()
             <button type="submit">Create</button>
         </form>
         <footer>
-            <p>Want to view a ticket? <a href="view.php">My ticket</a></p>
+            <p>Want to view a ticket? <a href="view.php">My ticket(s)</a></p>
         </footer>
     </section>
 <?php } ?>
