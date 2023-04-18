@@ -4,8 +4,7 @@ require_once('../database/user.php');
 
 $db = getDatabaseConnection();
 
-function view() 
-{?>
+function view() {?>
     <section id = "view">
         <header>
             <h1>My Tickets</h1>

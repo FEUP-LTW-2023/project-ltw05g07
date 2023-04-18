@@ -3,6 +3,7 @@
 
     require_once('../database/connection.php');
     require_once('../database/user.php');
+    require_once('../database/ticket.php');
 
     $db = getDatabaseConnection();
 
@@ -19,7 +20,7 @@
         header('Location: ../pages/create.php');
         echo "Content required!";
     } 
-    if($_POST['hastag'] == null){
+    if($_POST['hashtag'] == null){
         header('Location: ../pages/create.php');
         echo "Hashtag required!";
     }
