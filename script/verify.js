@@ -4,7 +4,7 @@ function verifyField(element) {
     const request = new XMLHttpRequest();
     request.addEventListener("load", function() {
         const result = JSON.parse(this.responseText).result;
-        const emailInput = document.querySelector(`input[name=${element.name}]`);
+        const input = document.querySelector(`input[name=${element.name}]`);
         emailInput.style = 
             `border-bottom: ${result ? 'none' : '2px solid red'};
             color: ${result ? 'black' :'red'};`
