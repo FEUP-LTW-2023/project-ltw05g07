@@ -6,11 +6,11 @@
 
     $db = getDatabaseConnection();
 
-    $user = getUserByUsernamePass($db, $_POST['username'], $_POST['password']);
+    $user = getUser($db, $_POST['username']);
 
-    if($user != null) {
+    if ($user != null && $user->verifyCredentials(password_hash($_POST['password'], PASSWORD_DEFAULT))) {
         echo "success";
-        $_SESSION['user'] = $user;
+        $_SESSION['user'] = $_POST['username'];
         header('Location: ../pages/register.php');
     } else {
         header('Location: ../pages/login.php');

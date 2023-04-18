@@ -32,37 +32,24 @@ function isAgent(PDO &$db, int $id) : bool {
             UserType::Client);
     }
 
-    function &getUser(PDO &$db, int $id) : User {
-        $stmt = $db->prepare('SELECT * FROM users WHERE id = ?;');
-        $stmt->execute(array($id));
-        $user = $stmt->fetchAll();
+    function getUser(PDO &$db, int|String $idOrUsername) : User {
+        if (is_int($idOrUsername)) {
+            $stmt = $db->prepare('SELECT * FROM users WHERE id = ?;');
+        } else if (is_string($idOrUsername)) {
+            $stmt = $db->prepare('SELECT * FROM users WHERE username = ?;');
+        }
+    
+        $stmt->execute(array($idOrUsername));
+        $user = $stmt->fetch();
         
         return new User(
-            $id,
+            $user['id'],
             $user['username'],
+            $user['password'],
             $user['first_name'],
             $user['last_name'],
             $user['email'],
-            getUserType($db, $id));
-    }
-
-    function &getUserByUsernamePass(PDO &$db, string $username, string $password) : ?User {
-        $stmt = $db->prepare('SELECT * FROM users WHERE username = ?;');
-        $stmt->execute(array($username));
-        $user = $stmt->fetch();
-        
-        if($user && password_verify($password, $user['password'])){
-            echo "success";
-            return new User(
-                intval($user['id']),
-                $username,
-                $user['first_name'],
-                $user['last_name'],
-                $user['email'],
-                getUserType($db, $user['id']));
-        }
-        echo "shit";
-        return null;
+            getUserType($db, $user['id']));
     }
 
     function &existsEmail(PDO &$db, string $email) : bool {

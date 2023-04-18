@@ -9,6 +9,7 @@ enum UserType {
 class User {
     private int $id; 
     private String $username;
+    private String $passwordHash;
     private String $firstName;
     private String $lastName;
     private String $email;
@@ -20,6 +21,10 @@ class User {
 
     public function getUsername() : String {
         return $this->username;
+    }
+
+    public function verifyCredentials(String $password) : bool {
+        return password_verify($password, $this->passwordHash);
     }
 
     public function getFirstName() : String {
@@ -38,9 +43,10 @@ class User {
         return $this->type;
     }
 
-    public function __construct(int $id, String &$username, String &$firstName, String &$lastName, String &$email, UserType $type) {
+    public function __construct(int $id, String &$username, String &$passwordHash, String &$firstName, String &$lastName, String &$email, UserType $type) {
         $this->id = $id;
         $this->username = $username;
+        $this->passwordHash = $passwordHash;
         $this->firstName = $firstName;
         $this->lastName = $lastName;
         $this->email = $email;
