@@ -58,26 +58,12 @@ function &getDepartment(PDO &$db, int $id) : Department {
     );
 }
 
-function getLastDepartmentId(PDO &$db) : int {
-    $stmt = $db->prepare(
-        'SELECT id
-        FROM department
-        ORDER BY id DESC
-        LIMIT 1'
-    );
-    $stmt->execute();
-    return intval($stmt->fetch());
-}
-
 function addDepartment(PDO &$db, String &$name) :void {
     $stmt = $db->prepare(
-        'INSERT INTO department(id, name)
-        VALUES(?, ?)'
+        'INSERT INTO department(name)
+        VALUES(?);'
     );
-    $stmt->execute(array(
-        getLastDepartmentId($db) + 1,
-        $name
-    ));
+    $stmt->execute(array($name));
 }
 
 ?>

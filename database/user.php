@@ -1,6 +1,6 @@
 <?php
 
-    require_once('../types/user.php');
+require_once('../types/user.php');
 
 function isAdmin(PDO &$db, int $id) : bool {
     $stmt = $db->prepare(
@@ -32,52 +32,39 @@ function isAgent(PDO &$db, int $id) : bool {
             UserType::Client);
     }
 
-    function &getUser(PDO &$db, int $id) : User {
-        $stmt = $db->prepare('SELECT * FROM users WHERE id = ?;');
-        $stmt->execute(array($id));
-        $user = $stmt->fetchAll();
+    function getUser(PDO &$db, int|String $idOrUsername) : User {
+        if (is_int($idOrUsername)) {
+            $stmt = $db->prepare('SELECT * FROM users WHERE id = ?;');
+        } else if (is_string($idOrUsername)) {
+            $stmt = $db->prepare('SELECT * FROM users WHERE username = ?;');
+        }
+    
+        $stmt->execute(array($idOrUsername));
+        $user = $stmt->fetch();
         
         return new User(
-            $id,
+            $user['id'],
             $user['username'],
+            $user['password'],
             $user['first_name'],
             $user['last_name'],
             $user['email'],
-            getUserType($db, $id));
+            getUserType($db, $user['id']));
     }
 
-    function &getUserByUsernamePass(PDO &$db, string $username, string $password) : ?User {
-        $stmt = $db->prepare('SELECT * FROM users WHERE username = ?;');
-        $stmt->execute(array($username));
-        $user = $stmt->fetch();
-        
-        if($user && password_verify($password, $user['password'])){
-            echo "success";
-            return new User(
-                intval($user['id']),
-                $username,
-                $user['first_name'],
-                $user['last_name'],
-                $user['email'],
-                getUserType($db, $user['id']));
-        }
-        echo "shit";
-        return null;
-    }
-
-    function &existsEmail(PDO &$db, string $email) : bool {
+    function existsEmail(PDO &$db, string $email) : bool {
         $stmt = $db->prepare('SELECT * FROM users WHERE email = ?;');
         $stmt->execute(array($email));
         return ($stmt->fetch() != null);
     }
 
-    function &existsUsername(PDO &$db, string $username) : bool {
+    function existsUsername(PDO &$db, string $username) : bool {
         $stmt = $db->prepare('SELECT * FROM users WHERE username = ?;');
         $stmt->execute(array($username));
         return ($stmt->fetch() != null);
     }
 
-    function &registerUser(PDO &$db, string $username, string $first_name, string $last_name, string $email, string $password) : bool {
+    function registerUser(PDO &$db, string $username, string $first_name, string $last_name, string $email, string $password) : bool {
         $stmt = $db->prepare('INSERT INTO users (username, first_name, last_name, email, password) VALUES (?, ?, ?, ?, ?);');
         return $stmt->execute(array($username, $first_name, $last_name, $email, password_hash($password, PASSWORD_DEFAULT)));;
     }
@@ -102,28 +89,14 @@ function isAgent(PDO &$db, int $id) : bool {
         return preg_match ('/^[a-zA-Z]+$/', $last_name);
     }
 
-function getLastUserId(PDO &$db) : int {
-    $stmt = $db->prepare(
-        'SELECT id
-        FROM users
-        ORDER BY id DESC
-        LIMIT 1;'
-    );
-    $stmt->execute();
-    $id = $stmt->fetch();
-    return intval($id);
-}
-
 function addUser(PDO &$db, String &$username, String &$firstName, String &$lastName, String &$email, UserType $type = UserType::Client, String &$password) : void {
     
-    $id = getLastUserId($db) + 1;
-    
     $stmt = $db->prepare(
-        'INSERT INTO users(id, username, first_name, last_name, email, password)
-        VALUES (?, ?, ?, ?, ?, ?);'
+        'INSERT INTO users(username, first_name, last_name, email, password)
+        VALUES (?, ?, ?, ?, ?);'
     );
+
     $stmt->execute(array(
-        $id,
         $username,
         $firstName,
         $lastName,
@@ -143,5 +116,5 @@ function addUser(PDO &$db, String &$username, String &$firstName, String &$lastN
             break;
     }
 
-    $stmt->execute(array($id));
+    $stmt->execute(array(getUser($db, $username)->getId()));
 }

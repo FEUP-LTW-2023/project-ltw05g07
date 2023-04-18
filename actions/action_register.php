@@ -51,8 +51,7 @@
 
     if(registerUser($db, $_POST['username'], $_POST['firstName'], $_POST['lastName'], $_POST['email'], $_POST['password'])) {
         echo "success";
-        $user = getUserByUsernamePass($db, $_POST['username'], $_POST['password']);
-        $_SESSION['user'] = $user;
+        $_SESSION['user'] = $_POST['username'];
         header('Location: ../pages/login.php');
     } else {
         header('Location: ../pages/register.php');

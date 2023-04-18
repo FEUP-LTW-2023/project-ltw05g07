@@ -28,25 +28,12 @@ function &getReplies(PDO &$db, int $ticketId) : array {
     return $replies;
 }
 
-function getLastReplyId(PDO &$db) : int {
-    $stmt = $db->prepare(
-        'SELECT *
-        FROM reply
-        ORDER BY id DESC
-        LIMIT 1;'
-    );
-    $stmt->execute();
-    $reply = $stmt->fetch();
-    return intval($reply['id']);
-}
-
 function addReply(PDO &$db, int $ticketId, int $userId, String &$comment) : void {
     $stmt = $db->prepare(
-        'INSERT INTO reply(id, ticket_id, user_id, comment, reply_date)
-        VALUES(?, ?, ?, ?, ?);'
+        'INSERT INTO reply(ticket_id, user_id, comment, reply_date)
+        VALUES(?, ?, ?, ?);'
     );
     $stmt->execute(array(
-        getLastReplyId($db) + 1,
         $ticketId,
         $userId,
         $comment,
