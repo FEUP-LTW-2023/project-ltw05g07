@@ -52,23 +52,6 @@ class User {
         $this->email = $email;
         $this->type = $type;
     }
-
-    /*static function &getUserByUsernamePass(PDO &$db, string $username, string $password) : User {
-        //echo $username;
-        $stmt = $db->prepare('SELECT * FROM users WHERE username = pcaddan0;');
-        $stmt->execute();
-        $user = $stmt->fetchAll();
-        var_dump($user);
-        
-        return new User(
-            $user['id'],
-            $username,
-            $user['first_name'],
-            $user['last_name'],
-            $user['email'],
-            getUserType($db, $user['id']));
-    }*/
-
 }
 
 ?>

@@ -6,7 +6,7 @@ enum TicketState {
     case Closed;
     case Resolved;
 
-    public function __toString() : String {
+    public function toString() : String {
         return match($this) {
             TicketState::Open => 'open',
             TicketState::Assigned => 'assigned',

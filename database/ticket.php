@@ -1,7 +1,7 @@
 <?php
 
-require_once('../ticket.php');
-require_once('../reply.php');
+require_once('../types/ticket.php');
+require_once('../types/reply.php');
 
 require_once('user.php');
 require_once('reply.php');
@@ -33,12 +33,12 @@ function &getTicket(PDO &$db, int $id) : Ticket {
     );
 }
 
-function getLastTicketId(PDO &$db) {
+function getLastTicketId(PDO &$db) : int {
     $stmt = $db->prepare(
         'SELECT id
         FROM ticket
         ORDER BY id DESC
-        LIMIT 1'
+        LIMIT 1;'
     );
     $stmt->execute();
     return intval($stmt->fetch());
@@ -46,11 +46,11 @@ function getLastTicketId(PDO &$db) {
 
 function createTicket(PDO &$db, int $userId, String &$subject, String &$content, array &$hashtags) : void {
     $stmt = $db->prepare(
-        'INSERT INTO ticket(id, user_id, subject, content, hashtags, post_date)
-        VALUES(?, ?, ?, ?, ?, ?);'
+        'INSERT INTO ticket(user_id, subject, content, hashtags, post_date)
+        VALUES(?, ?, ?, ?, ?);'
     );
+
     $stmt->execute(array(
-        getLastTicketId($db) + 1,
         $userId,
         $subject,
         $content,
