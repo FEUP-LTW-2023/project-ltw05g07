@@ -25,13 +25,13 @@
         return;
     }
 
-    if (!validFirstName($_POST['firstName'])) {
+    if (!validName($_POST['firstName'])) {
         header('Location: ../pages/register.php');
         echo "Invalid first name!";
         return;
     }
 
-    if (!validLastName($_POST['lastName'])) {
+    if (!validName($_POST['lastName'])) {
         header('Location: ../pages/register.php');
         echo "Invalid last name!";
         return;
