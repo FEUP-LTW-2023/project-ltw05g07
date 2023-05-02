@@ -4,13 +4,13 @@ require_once('ticket_status.php');
 require_once('reply.php');
 
 class Ticket {
-    private int $id;
-    private String $subject;
-    private String $content;
-    private array $hashtags;
-    private array $replies;
-    private array $statusHistory;
-    private DateTime $date;
+    public int $id;
+    public String $subject;
+    public String $content;
+    public array $hashtags;
+    public array $replies;
+    public array $statusHistory;
+    public DateTime $date;
 
     public function getId() : int {
         return $this->id;

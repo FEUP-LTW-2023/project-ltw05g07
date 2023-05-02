@@ -1,6 +1,7 @@
 <?php
 
 require_once('../types/ticket.php');
+require_once('../database/ticket_status.php');
 require_once('../types/reply.php');
 
 require_once('user.php');
@@ -8,19 +9,26 @@ require_once('reply.php');
 
 require_once('utils.php');
 
-function &getTicket(PDO &$db, int $id) : Ticket {
+function &getTicket(PDO &$db, int $id) : ?Ticket {
     $stmt = $db->prepare(
         'SELECT *
         FROM ticket
         WHERE id = ?;'
     );
     $stmt->execute(array($id));
-    $ticket = $stmt->fetchAll();
+    $ticket = $stmt->fetch();
+    //print_r($ticket);
+    //echo $ticket['id'];
+
 
     $replies = getReplies($db, $id);
     $statusHistory = getStatusHistory($db, $id);
     $dateTime = getDateTimeFromString($ticket['post_date']);
     $hashtags = explode(',', $ticket['hashtags']);
+
+    //echo sizeof($hashtags);
+
+   // print_r($hashtags);
 
     return new Ticket(
         $id,

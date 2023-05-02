@@ -93,3 +93,21 @@ body > footer > div {
     color: #ef8354;
     text-decoration: none;
 }
+
+#ticket_content {
+    display: flex;
+    text-align: center;
+    width: 70%;
+    margin:auto;
+    background-color: #ef8354;
+}
+
+#ticket_content > div > header {
+    text-align: center;
+}
+
+#ticket_content > div > header > h1 > a {
+    font-size: 30px;
+    color: #000;
+    text-decoration: none;
+}

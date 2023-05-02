@@ -1,7 +1,7 @@
 <?php 
 
-require_once('../ticket.php');
-require_once('../ticket_status.php');
+require_once('../types/ticket.php');
+require_once('../types/ticket_status.php');
 
 require_once('utils.php');
 
@@ -15,6 +15,7 @@ function &getStatusHistory(PDO &$db, int $ticketId) : array {
     );
     $stmt->execute(array($ticketId));
     $statusHistoryRaw = $stmt->fetchAll();
+    //print_r($statusHistoryRaw);
 
     $statusHistory = array();
 
