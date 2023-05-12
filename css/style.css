@@ -2,6 +2,10 @@
     font-family: 'myFont';
     src: url(../fonts/coolveticarg.otf);
 }
+@font-face {
+    font-family: 'myFont2';
+    src: url(../fonts/made_tommy.otf);
+}
 
 html {
     box-sizing: border-box;
@@ -9,6 +13,9 @@ html {
 
 body, main {
     margin: 0 auto;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 *, *::after, *::before {
@@ -85,7 +92,7 @@ body > footer > div {
     text-align: center;
     font-family: 'myFont';
     width: 100%;
-    position: absolute;
+    margin-top: auto;
     bottom: 0;
 }
 
@@ -97,17 +104,109 @@ body > footer > div {
 #ticket_content {
     display: flex;
     text-align: center;
-    width: 70%;
+    width: 85%;
     margin:auto;
-    background-color: #ef8354;
+    background-color: #CFCFCF;
+    border-radius: 5px;
+    font-family: 'myFont2';
+}
+
+#ticket_content > div {
+    flex: auto;
+    padding: 10px;
 }
 
 #ticket_content > div > header {
     text-align: center;
+    padding-left: 10px;
 }
 
 #ticket_content > div > header > h1 > a {
     font-size: 30px;
     color: #000;
     text-decoration: none;
+}
+
+#ticket_user {
+    flex: 0;
+    border-right: 4px dashed black;
+    border-color: #004E98;
+}
+
+#ticket_user > div{
+    margin-top: 10px;
+}
+
+#ticket_user > p {
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
+    text-align: center;
+    color: #ef8354;
+}
+
+#ticket_footer {
+    display: flex;
+
+}
+
+#hashtags_container{
+    flex: auto;
+    text-align: left;
+    font-size: 14px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+#date_container{
+    flex: auto;
+    text-align: right;
+    font-size: 14px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+#replies_title{
+    padding-top: 30px;
+    padding-left: 7.5%;
+    font-family: 'myFont2';
+}
+
+#reply_content {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    width: 85%;
+    margin:auto;
+    margin-top: 30px;
+    font-family: 'myFont2';   
+}
+
+#reply_footer {
+    display: flex;
+    min-width: 100%;
+    max-width: 100%;
+
+}
+
+#reply_text{
+    width: 100%;
+    border-bottom: 4px solid black;
+    border-color: #474A48; 
+
+}
+#reply_text > p{
+    padding-left: 10px;
+    padding-right: 10px;
+    text-align: left;
+
+}
+
+#reply_user {
+    flex: auto;
+    text-align: left;
+    font-size: 14px;    
+    padding-left: 10px;
+    padding-right: 10px;
+    color: #ef8354;
 }

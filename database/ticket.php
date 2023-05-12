@@ -27,11 +27,13 @@ function &getTicket(PDO &$db, int $id) : ?Ticket {
     $hashtags = explode(',', $ticket['hashtags']);
 
     //echo sizeof($hashtags);
+    //echo $ticket['user_id'];
 
    // print_r($hashtags);
 
     return new Ticket(
         $id,
+        $ticket['user_id'],
         $ticket['subject'],
         $ticket['content'],
         $hashtags,

@@ -1,9 +1,9 @@
 <?php
 class Reply {
-    private int $id;
-    private User $author;
-    private String $comment;
-    private DateTime $date;
+    public int $id;
+    public User $author;
+    public String $comment;
+    public DateTime $date;
 
     public function getId() : int {
         return $this->id;

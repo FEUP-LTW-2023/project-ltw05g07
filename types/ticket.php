@@ -5,6 +5,7 @@ require_once('reply.php');
 
 class Ticket {
     public int $id;
+    public int $user_id;
     public String $subject;
     public String $content;
     public array $hashtags;
@@ -14,6 +15,9 @@ class Ticket {
 
     public function getId() : int {
         return $this->id;
+    }
+    public function getAuthorId() : int {
+        return $this->$user_id;
     }
     public function getSubject() : String {
         return $this->subject;
@@ -43,11 +47,12 @@ class Ticket {
         return $this->date;
     }
 
-    public function __construct(int $id, String &$subject, String &$content, array &$hashtags, array &$replies, array &$statusHistory, DateTime &$date) {
+    public function __construct(int $id,int $user_id, String &$subject, String &$content, array &$hashtags, array &$replies, array &$statusHistory, DateTime &$date) {
         $this->id = $id;
+        $this->user_id = $user_id;
         $this->subject = $subject;
         $this->content = $content;
-        $this->$hashtags = $hashtags;
+        $this->hashtags = $hashtags;
         $this->replies = $replies;
         $this->statusHistory = $statusHistory;
         $this->date = $date;

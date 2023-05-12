@@ -7,13 +7,13 @@ enum UserType {
 }
 
 class User {
-    private int $id; 
-    private String $username;
-    private String $passwordHash;
-    private String $firstName;
-    private String $lastName;
-    private String $email;
-    private UserType $type;
+    public int $id; 
+    public String $username;
+    public String $passwordHash;
+    public String $firstName;
+    public String $lastName;
+    public String $email;
+    public UserType $type;
 
     public function getId() : int {
         return $this->id;

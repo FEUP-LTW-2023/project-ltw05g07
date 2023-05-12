@@ -50,7 +50,9 @@ function getLatestState(PDO &$db, int $ticketId) : TicketState {
     );
     $stmt->execute(array($ticketId));
     $state = $stmt->fetch();
-    return TicketState::fromString($state);
+    //echo $state['status'];
+    //print_r($state->status);
+    return TicketState::fromString($state['status']);
 }
 
 function updateStatus(PDO &$db, int $ticketId, ?TicketState $state = null) : void {

@@ -13,6 +13,10 @@ form * {
     justify-content: center;
 }*/
 
+#user_form {
+    width:500px;
+}
+
 #user_form > *{
     margin: 0 auto;
     text-align: center;
@@ -24,7 +28,6 @@ form * {
     padding-right: 20px;
     padding-top: 10px;
     padding-bottom: 10px;
-    width: 30%;
     border-radius: 25px;
     box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.4);
 }
@@ -75,4 +78,29 @@ form * {
     color: #ef8354;
     text-decoration: none;
     font-family: 'myFont';
+}
+
+#reply_form {
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    font-family: 'myFont2';   
+}
+
+#reply_form > button {
+    width:85%;
+    margin: auto;
+    margin-top: 10px;
+    background-color: #ced4da;
+    color: #004E98;
+    font-size: 16px;
+    border-radius: 20px;
+}
+
+#reply_form > textarea {
+    outline: none;
+    resize: none;
+    width: 85%;
+    margin: auto;
 }
