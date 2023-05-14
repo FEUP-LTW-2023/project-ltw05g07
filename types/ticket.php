@@ -17,7 +17,7 @@ class Ticket {
         return $this->id;
     }
     public function getAuthorId() : int {
-        return $this->$user_id;
+        return $this->user_id;
     }
     public function getSubject() : String {
         return $this->subject;

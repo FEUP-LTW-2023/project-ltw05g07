@@ -5,7 +5,7 @@ function verifyField(element) {
     request.addEventListener("load", function() {
         const result = JSON.parse(this.responseText).result;
         element.style = 
-            `border-bottom: ${result ? 'none' : '2px solid red'};
+            `border: ${result ? 'none' : '2px solid red'};
             color: ${result ? 'black' :'red'};`
     });
     request.open("GET", "../actions/verify.php?" + encodeForAjax(query), true);
@@ -20,7 +20,7 @@ document.querySelectorAll("input:not([type=button])") .forEach(element => {
 });
 
 document.querySelector("input[type=button]").addEventListener("click", () => {
-    if (Array.from(document.querySelectorAll("input:not([type=button])")).every(input => input.style["border-bottom-color"] != "red" && input.value != "")) {
+    if (Array.from(document.querySelectorAll("input:not([type=button])")).every(input => input.style["border-color"] != "red" && input.value != "")) {
         document.forms[0].submit();
     }
 });
