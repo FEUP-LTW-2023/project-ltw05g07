@@ -3,3 +3,4 @@ function encodeForAjax(data) {
         return encodeURIComponent(k) + '=' + encodeURIComponent(data[k])
     }).join('&')
 }
+

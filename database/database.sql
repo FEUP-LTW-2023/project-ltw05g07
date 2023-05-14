@@ -104,7 +104,7 @@ CREATE TABLE admin_department (
 );
 
 CREATE TABLE faq (
-    id IINTEGER PRIMARY KEY,
+    id INTEGER PRIMARY KEY,
     question VARCHAR(255) NOT NULL,
     answer VARCHAR(255) NOT NULL
 );
