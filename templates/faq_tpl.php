@@ -1,6 +1,5 @@
-<?php 
-funtion faq(){ ?>
-    <!DOCTYPE html>
+<?php function faq() { ?>
+<!DOCTYPE html>
 <head>
     <title>F.A.Q.</title>
     <link rel="stylesheet" href="style.css"> 
@@ -48,5 +47,4 @@ funtion faq(){ ?>
             </section>
         </main>
 </body>
-<?php}
-?>
+<?php } ?>
