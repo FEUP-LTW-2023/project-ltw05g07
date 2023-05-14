@@ -9,16 +9,13 @@ $faqs = getFAQ($db);
 common_header();
 
 ?>
-    <!-- include CSS -->
 <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
 <link rel="stylesheet" type="text/css" href="font-awesome/css/font-awesome.css" />
 <link rel="stylesheet" href="../css/faq.css">
  
-<!-- include JS -->
 <script src="js/jquery-3.3.1.min.js"></script>
 <script src="js/bootstrap.js"></script>
- 
-<!-- show all FAQs in a panel -->
+
 <div class="container" style="margin-top: 50px; margin-bottom: 50px;">
     <div class="row">
         <div class="col-md-12 accordion_one">
