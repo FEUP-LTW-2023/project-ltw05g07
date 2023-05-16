@@ -47,7 +47,8 @@ function getRow(PDO &$db, int &$id) :array{
 
 function Update(PDO &$db,int &$id, String &$question, String &$answer){
     if (isset($_POST["submit"])){
-    $sql = "UPDATE faqs SET question = ?, answer = ? WHERE id = ?";
+
+    $sql = "UPDATE faq SET question = ?, answer = ? WHERE id = ?";
     $db = $db->prepare($sql);
     $db->execute([
         $_POST["question"],
