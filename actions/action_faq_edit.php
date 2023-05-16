@@ -13,7 +13,4 @@
         $_POST['answer']
     );
 
-    $_SESSION['user'] = $_POST['username'];
-    $referer = $_SERVER['HTTP_REFERER'];
-    header("Location: $referer");
-    exit(0);
+    header('Location: ../pages/faq_add.php');
