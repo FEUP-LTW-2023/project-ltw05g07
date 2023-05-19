@@ -24,7 +24,7 @@ common_header();
                     
             <input type="submit" name="submit" class="btn btn-info" value="Submit" />
         </form>
-        <table>
+        <table class = "table_add">
             <thead>
                 <tr>
                     <th>Number</th>
@@ -44,12 +44,12 @@ common_header();
                             <td><?php echo $faq["question"]; ?></td>
                             <td><?php echo $faq["answer"]; ?></td>
                             <td>
-                            <a  href="faq_edit.php?id=<?php echo $faq['id']; ?>" class="button">
+                            <a  href="faq_edit.php?id=<?php echo $faq['id']; ?>" class="button_faq">
                                 Edit
                             </a>
                             <form method="POST" action="/../actions/action_faq_delete.php" onsubmit="return confirm('Are you sure you want to delete this FAQ ?');">
                                 <input type="hidden" name="id" value="<?php echo $faq['id']; ?>" required />
-                                <input type="submit" value="Delete" class = "button"/>
+                                <input type="submit" value="Delete" class = "button_faq"/>
                             </form>
                             </td>
                         </tr>
