@@ -32,6 +32,25 @@ function getUserType(PDO &$db, int $id) : UserType {
         UserType::Client);
 }
 
+function getUserDefault(PDO &$db, int|String $idOrUsername) : User {
+    if (is_int($idOrUsername)) {
+        $stmt = $db->prepare('SELECT * FROM users WHERE id = ?;');
+    } else if (is_string($idOrUsername)) {
+        $stmt = $db->prepare('SELECT * FROM users WHERE username = ?;');
+    }
+
+    $stmt->execute(array($idOrUsername));
+    $user = $stmt->fetch();
+    
+    return new User(
+        $user['id'],
+        $user['username'],
+        $user['password'],
+        $user['first_name'],
+        $user['last_name'],
+        $user['email']);
+}
+
 function getUser(PDO &$db, int|String $idOrUsername) : User {
     if (is_int($idOrUsername)) {
         $stmt = $db->prepare('SELECT * FROM users WHERE id = ?;');
@@ -51,6 +70,8 @@ function getUser(PDO &$db, int|String $idOrUsername) : User {
         $user['email'],
         getUserType($db, $user['id']));
 }
+
+
 
 function existsEmail(PDO &$db, string $email) : bool {
     $stmt = $db->prepare('SELECT * FROM users WHERE email = ?;');

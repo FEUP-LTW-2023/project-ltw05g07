@@ -3,10 +3,10 @@
 require_once('user.php');
 
 class Department {
-    private int $id;
-    private String $name;
-    private array $agents;
-    private array $admins;
+    public int $id;
+    public String $name;
+    public array $agents;
+    public array $admins;
     
     public function getId() : int {
         return $this->id;

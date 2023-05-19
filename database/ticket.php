@@ -43,6 +43,50 @@ function &getTicket(PDO &$db, int $id) : ?Ticket {
     );
 }
 
+function &getTicketDefault(PDO &$db, int $id) : ?Ticket {
+    $stmt = $db->prepare(
+        'SELECT *
+        FROM ticket
+        WHERE id = ?;'
+    );
+    $stmt->execute(array($id));
+    $ticket = $stmt->fetch();
+    //print_r($ticket);
+    //echo $ticket['id'];
+    $dateTime = getDateTimeFromString($ticket['post_date']);
+    $hashtags = explode(',', $ticket['hashtags']);
+
+    //var_dump($dateTime);    
+
+    //echo $dateTime->format('Y-m-d H:i:s');
+
+    return new Ticket(
+        $id,
+        $ticket['user_id'],
+        $ticket['subject'],
+        $ticket['content'],
+        $hashtags,
+        $dateTime,
+        //$ticket['post_date'],
+    );
+}
+
+function &getAllTickets(PDO &$db) : array {
+    $stmt = $db->query('SELECT * FROM ticket');
+    $tickets = array();
+
+    while ($row = $stmt->fetch()) {
+        $id = $row['id'];
+        $ticket = getTicketDefault($db, $id);
+        
+        if ($ticket !== null) {
+            $tickets[] = $ticket;
+        }
+    }
+    //print_r($tickets);
+    return $tickets;
+}
+
 function getLastTicketId(PDO &$db) : int {
     $stmt = $db->prepare(
         'SELECT id

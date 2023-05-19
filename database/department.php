@@ -1,6 +1,6 @@
 <?php
 
-require_once('../department.php');
+require_once('../types/department.php');
 
 function &getDepartmentAgents(PDO &$db, int $departmentId) : array {
     $stmt = $db->prepare(
@@ -28,6 +28,8 @@ function &getDepartmentAdmins(PDO &$db, int $departmentId) : array {
     );
     $stmt->execute(array($departmentId));
     $adminIds = $stmt->fetchAll();
+
+    //print_r($adminIds->id);
 
     $admins = array();
 
@@ -64,6 +66,45 @@ function addDepartment(PDO &$db, String &$name) :void {
         VALUES(?);'
     );
     $stmt->execute(array($name));
+}
+
+function getUniqueDepartments(PDO &$db) : array {
+    $stmt = $db->prepare(
+        'SELECT *
+        FROM department;'
+    );
+    $stmt->execute();
+    $departments = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    //print_r($departments);
+
+
+    return $departments;
+}
+
+function getTicketsFromDepartment(PDO &$db, int $departmentId) : array {
+    $stmt = $db->prepare(
+        'SELECT ticket_id
+        FROM ticket_department
+        WHERE department_id = ?;'
+    );
+    $stmt->execute(array($departmentId));
+    $ticketIds = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    //print_r($ticketIds);
+
+    //echo sizeof($ticketIds);
+
+
+    $tickets = array();
+
+    foreach ($ticketIds as $id) {
+        array_push($tickets, getTicketDefault($db, $id));
+    }
+
+    //print_r($tickets);
+
+    return $tickets;
 }
 
 ?>

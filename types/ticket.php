@@ -47,7 +47,17 @@ class Ticket {
         return $this->date;
     }
 
-    public function __construct(int $id,int $user_id, String &$subject, String &$content, array &$hashtags, array &$replies, array &$statusHistory, DateTime &$date) {
+    public function __construct()
+    {
+        $arguments = func_get_args();
+        $numberOfArguments = func_num_args();
+
+        if (method_exists($this, $function = '__construct'.$numberOfArguments)) {
+            call_user_func_array(array($this, $function), $arguments);
+        }
+    }
+
+    public function __construct8(int $id,int $user_id, String &$subject, String &$content, array &$hashtags, array &$replies, array &$statusHistory, DateTime &$date) {
         $this->id = $id;
         $this->user_id = $user_id;
         $this->subject = $subject;
@@ -55,6 +65,15 @@ class Ticket {
         $this->hashtags = $hashtags;
         $this->replies = $replies;
         $this->statusHistory = $statusHistory;
+        $this->date = $date;
+    }
+
+    public function __construct6(int $id,int $user_id, String &$subject, String &$content, array &$hashtags, DateTime &$date) {
+        $this->id = $id;
+        $this->user_id = $user_id;
+        $this->subject = $subject;
+        $this->content = $content;
+        $this->hashtags = $hashtags;
         $this->date = $date;
     }
 }

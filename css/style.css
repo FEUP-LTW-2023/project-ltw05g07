@@ -11,8 +11,14 @@ html {
     box-sizing: border-box;
 }
 
-body, main {
-    margin: 0 auto;
+body {
+    min-height: 100vh;
+    display: flex;
+    margin : 0 auto;
+    flex-direction: column;
+}
+
+main {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -101,20 +107,62 @@ body > footer > div {
     text-decoration: none;
 }
 
+/*#ticket_list {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin:auto;
+    margin-top: 30px;
+    font-family: 'myFont2';
+}*/
+
+#filter_by{
+    margin-top: 0%;
+    padding-left: 10px;
+    font-family: 'myFont2';
+}
+
+#filters{
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    padding: 10px;
+    margin-bottom: 20px;
+    font-family: 'myFont2';
+}
+
+#filter_department, #filter_sort, #filter_state{
+
+    font-size: 14px;
+    margin-left: 10px;
+    margin-right: 10px;
+    width:200px;
+    height: 30px;
+    padding: auto;
+
+}
+
 #ticket_content {
     display: flex;
     text-align: center;
     width: 85%;
-    margin:auto;
+    margin-bottom: 40px;
+    margin-left: 7.5%;
     background-color: #CFCFCF;
     border-radius: 5px;
     font-family: 'myFont2';
 }
 
-#ticket_content > div {
-    flex: auto;
+#ticket_text{
+    flex:1;
     padding: 10px;
 }
+
+/*#ticket_content > div {
+    flex: 0 0 70%;
+    overflow: hidden;
+    padding: 10px;
+}*/
 
 #ticket_content > div > header {
     text-align: center;
@@ -127,8 +175,16 @@ body > footer > div {
     text-decoration: none;
 }
 
+#ticket_text > p {
+    font-size: 16px;
+    color: #000;
+    text-decoration: none;
+}
+
 #ticket_user {
-    flex: 0;
+    flex: 0 0 15%;
+    padding: 10px;
+    overflow: hidden;
     border-right: 4px dashed black;
     border-color: #004E98;
 }
@@ -167,7 +223,6 @@ body > footer > div {
 }
 
 #replies_title{
-    padding-top: 30px;
     padding-left: 7.5%;
     font-family: 'myFont2';
 }

@@ -26,9 +26,9 @@ enum TicketState {
 }
 
 class TicketStatus {
-    private int $id;
-    private TicketState $state;
-    private DateTime $date;
+    public int $id;
+    public TicketState $state;
+    public DateTime $date;
 
     public function getId() : int {
         return $this->id;

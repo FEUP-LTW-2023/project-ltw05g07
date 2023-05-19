@@ -23,7 +23,7 @@
         <header id = "default_header">
             <nav>
                 <ul class="nav_link">
-                    <li><a href="index.php">Home</a></li>
+                    <li><a href="home.php">Home</a></li>
                 </ul>
             </nav>
                 <h1>TicketPilot</h1>

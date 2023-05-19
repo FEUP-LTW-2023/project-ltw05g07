@@ -14,7 +14,7 @@
             </div>
             <p><?=$user->username?></p>
         </div>
-        <div>
+        <div id = "ticket_text">
             <header>
                 <h1><a href="ticket.php?id=<?=$ticket->id ?>"><?= $ticket->subject ?></a></h1>
             </header>
