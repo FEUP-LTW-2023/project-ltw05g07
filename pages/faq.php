@@ -4,47 +4,35 @@ include_once('../database/faq.php');
 require_once('../database/connection.php');
 
 $db = getDatabaseConnection();
-
 $faqs = getFAQ($db);
+
 common_header();
 
 ?>
-<link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
-<link rel="stylesheet" type="text/css" href="font-awesome/css/font-awesome.css" />
-<link rel="stylesheet" href="../css/faq.css">
- 
-<script src="js/jquery-3.3.1.min.js"></script>
-<script src="js/bootstrap.js"></script>
+<section id="faq">
+    <header>
+        <h1>Frequently asked questions</h1>
+    </header>
+    <div class="faq">
+        <div class="faq-row">
+            <?php foreach ($faqs as $faq): ?>
+                <div class="faq-heading">
+                    <h4 class="faq-question">
+                        <?php echo $faq['question']; ?>
+                    </h4>
+                </div>
 
-<div class="container" style="margin-top: 50px; margin-bottom: 50px;">
-    <div class="row">
-        <div class="col-md-12 accordion_one">
-            <div class="panel-group">
-                <?php foreach ($faqs as $faq): ?>
-                    <div class="panel panel-default">
- 
-                        <div class="panel-heading">
-                            <h4 class="panel-title">
-                                <a data-toggle="collapse" data-parent="#accordion_oneLeft" href="#faq-<?php echo $faq['id']; ?>" aria-expanded="false" class="collapsed">
-                                    <?php echo $faq['question']; ?>
-                                </a>
-                            </h4>
-                        </div>
-
-                        <div id="faq-<?php echo $faq['id']; ?>" class="panel-collapse collapse" aria-expanded="false" role="tablist" style="height: 0px;">
-                            <div class="panel-body">
-                                <div class="text-accordion">
-                                    <?php echo $faq['answer']; ?>
-                                </div>
-                            </div>
+                <div id="faq-<?php echo $faq['id']; ?>">
+                    <div class="faq-body">
+                        <div class="faq-answer">
+                            <?php echo $faq['answer']; ?>
                         </div>
                     </div>
-                <?php endforeach; ?>
-            </div>
+                </div>
+            <?php endforeach; ?>
         </div>
     </div>
-</div>
-
+</section>
 <?php
 common_footer();
 ?>

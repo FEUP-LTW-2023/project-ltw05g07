@@ -104,3 +104,138 @@ form * {
     width: 85%;
     margin: auto;
 }
+
+#faq {
+    margin-bottom: 50px;
+}
+
+#faq > header {
+    font-family: 'myFont';
+    justify-content: center;
+    text-align: center;
+    font-size: 30px;
+    color:#004E98;
+    margin-top: 50px;
+    margin-bottom: 25px;
+}
+
+.faq-row {
+    width: 100%;
+    display: block;
+    justify-content: center;
+    border-radius: 10px;
+    padding: 0.3em;
+    margin: 0.3em 0;
+    font-family: 'myFont';
+    background-color: #ced4da;
+}
+
+.faq-question {
+    font-size: 20px;
+    color: #004E98;
+    margin-bottom: 10px;
+}
+
+#create{
+    background-color: #ced4da;
+    border-radius: 10px;
+    padding: 50px;
+}
+
+#create > header{
+    width: 100%;
+    display: block;
+    justify-content: center;
+    border-radius: 10px;
+    padding: 0.3em;
+    margin: 0.3em 0;
+    font-family: 'myFont';
+    color:#004E98;
+}
+
+#create > form > input[type=text]{
+    border-radius: 10px;
+    width: 100%;
+    height: 25px;
+    padding: 12px 20px;
+    margin: 5px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+    resize: none;
+}
+
+#create > form > input[type=text]:focus{
+    border: 3px solid #555;
+}
+
+#create > form > button{
+    background-color: #004E98;
+    border: none;
+    color: white;
+    padding: 10px 10px;
+    text-decoration: none;
+    margin-top: 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    float: right;
+}
+
+#create > form > button:hover{
+    background-color: #006dd3;
+}
+
+#faq-form{
+    width: 100%;
+    display: block;
+    justify-content: center;
+    border-radius: 10px;
+    padding: 0.3em;
+    margin: 0.3em 0;
+    font-family: 'myFont';
+}
+
+#faq-form > h1{
+    color:#004E98;
+}
+
+#faq-form > form{
+    width: 100%;
+    display: block;
+    justify-content: center;
+    border-radius: 10px;
+    padding: 0.3em;
+    margin: 0.3em 0;
+    font-family: 'myFont';
+}
+
+#faq-form > form > input[type=submit]{
+    background-color: #004E98;
+    border: none;
+    color: white;
+    padding: 10px 10px;
+    text-decoration: none;
+    margin-top: 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    float:inline-end;
+}
+
+#faq-form > form > .form-group > label{
+    border: none;
+    padding: 20px;
+    text-decoration: none;
+    border-radius: 10px;
+}
+
+#faq-form > table >tbody{
+    text-align: left;
+    padding: 8px;
+}
+
+
+#faq-form > table >thead{
+    background-color: #ced4da;
+    text-decoration: none;
+}
