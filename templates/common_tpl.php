@@ -22,6 +22,7 @@
             <nav>
                 <ul class="nav_link">
                     <li><a href="home.php">Home</a></li>
+                    <li><a href="profile.php">Profile</a></li>
                 </ul>
             </nav>
                 <h1>TicketPilot</h1>

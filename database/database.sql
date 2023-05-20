@@ -110,16 +110,16 @@ CREATE TABLE faq (
 );
 
 
-insert into users (id, username, first_name, last_name, email, password) values (1, 'pcaddan0', 'Pru', 'Caddan', 'pcaddan0@twitpic.com', 'EMlEoH5wmjl9');
-insert into users (id, username, first_name, last_name, email, password) values (2, 'bchieco1', 'Bat', 'Chieco', 'bchieco1@deliciousdays.com', 'nG8jEI');
-insert into users (id, username, first_name, last_name, email, password) values (3, 'elesieur2', 'Emilee', 'Le Sieur', 'elesieur2@vistaprint.com', 'r7gOkzg');
-insert into users (id, username, first_name, last_name, email, password) values (4, 'bhandes3', 'Bastian', 'Handes', 'bhandes3@arizona.edu', 'r8WPO9Fl');
-insert into users (id, username, first_name, last_name, email, password) values (5, 'afossord4', 'Alaric', 'Fossord', 'afossord4@utexas.edu', 'RJsqD7');
-insert into users (id, username, first_name, last_name, email, password) values (6, 'cguidi5', 'Conney', 'Guidi', 'cguidi5@ibm.com', 'ULYxwbj');
-insert into users (id, username, first_name, last_name, email, password) values (7, 'nmolian6', 'Nolan', 'Molian', 'nmolian6@amazon.co.jp', 'OSXg7uPD3a');
-insert into users (id, username, first_name, last_name, email, password) values (8, 'rrawstron7', 'Ruby', 'Rawstron', 'rrawstron7@yandex.ru', 'MPh3FqxT');
-insert into users (id, username, first_name, last_name, email, password) values (9, 'fnewick8', 'Felice', 'Newick', 'fnewick8@google.com.hk', 'E51HZpZXD5');
-insert into users (id, username, first_name, last_name, email, password) values (10, 'mwaind9', 'Maia', 'Waind', 'mwaind9@netlog.com', 'e9gEFV6nbNWy');
+insert into users (id, username, first_name, last_name, email, password) values (1, 'pcaddan0', 'Pru', 'Caddan', 'pcaddan0@twitpic.com', '$2y$10$HjLRBTlT5iVAHrqVNV.lveAL39z5443I7M0BOiwBOtf86Hre1j6v6'); --Ilovelasagna
+insert into users (id, username, first_name, last_name, email, password) values (2, 'bchieco1', 'Bat', 'Chieco', 'bchieco1@deliciousdays.com', '$2y$10$5w1bzmEPa7sscMelxuDF8.3pkjwKMnzukHrHN6lTBH19CldErtIFK'); --Donttrytohackme
+insert into users (id, username, first_name, last_name, email, password) values (3, 'elesieur2', 'Emilee', 'Le Sieur', 'elesieur2@vistaprint.com', '$2y$10$yo4YStNd7yUFltBTeH2lHORKxPhC9xyjmBP/VZK.daWeqSqRuZpke'); --Iamnotarobot
+insert into users (id, username, first_name, last_name, email, password) values (4, 'bhandes3', 'Bastian', 'Handes', 'bhandes3@arizona.edu', '$2y$10$INhcKCTKtkR3GgkYW/zZlOS3Xu54IhH3nBzbeiK.bPnWuuf5c4xQC'); --iamaRobot
+insert into users (id, username, first_name, last_name, email, password) values (5, 'afossord4', 'Alaric', 'Fossord', 'afossord4@utexas.edu', '$2y$10$.fuPp/XM0gHHeyG0kAT0V.JzAmECPFuIAzjrGzrQlvhJGPvLSqPzO'); --iamanAgent
+insert into users (id, username, first_name, last_name, email, password) values (6, 'cguidi5', 'Conney', 'Guidi', 'cguidi5@ibm.com', '$2y$10$0IcMLJ86gKXKaDyTjAfZC.HshkWTE9gj5Mis90EQ2yKMkfR1tSmbS'); --AgentoftheMonth
+insert into users (id, username, first_name, last_name, email, password) values (7, 'nmolian6', 'Nolan', 'Molian', 'nmolian6@amazon.co.jp', '$2y$10$EThvreVqQ/N/XtYd1Y1AZOxI.52K5MaVVlGERK6Nxg1dGKhoRYM1i'); --purplechocolate123
+insert into users (id, username, first_name, last_name, email, password) values (8, 'rrawstron7', 'Ruby', 'Rawstron', 'rrawstron7@yandex.ru', '2y$10$krzStixvJmQDonIIXlqvb./imxzBc4c5mvCeZA32ZRnLtcLR9p8tW'); --IamanAdmin
+insert into users (id, username, first_name, last_name, email, password) values (9, 'fnewick8', 'Felice', 'Newick', 'fnewick8@google.com.hk', '$2y$10$5yV12x6RHKGgVOUtQMP25.mlm0vjys5Usyapr33U/hSzBsVNttod.'); --Iownthissite777
+insert into users (id, username, first_name, last_name, email, password) values (10, 'mwaind9', 'Maia', 'Waind', 'mwaind9@netlog.com', '$2y$10$TqKa5HPdvII/Ut8ayoZBo.dBjuRViUd/J1lsPwmj8b09afOXV3vQK'); --Iamnotanadmin
 
 
 insert into client (id) values (1);
