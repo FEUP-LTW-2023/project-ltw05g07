@@ -145,4 +145,40 @@ function createTicket(PDO &$db, int $userId, String &$subject, String &$content,
 
 }
 
+function &getTicketbyUser(PDO &$db, int $user_id) : ?Ticket {
+    $stmt = $db->prepare(
+        'SELECT *
+        FROM ticket
+        WHERE user_id = ?
+        ORDER by id DESC
+        limit 1'
+    );
+    $stmt->execute(array($user_id));
+    $ticket = $stmt->fetch();
+    //print_r($ticket);
+    //echo $ticket['id'];
+
+    $id = $ticket['id'];
+    $replies = getReplies($db, $id);
+    $statusHistory = getStatusHistory($db, $id);
+    $dateTime = getDateTimeFromString($ticket['post_date']);
+    $hashtags = explode(',', $ticket['hashtags']);
+
+    //echo sizeof($hashtags);
+    //echo $ticket['user_id'];
+
+   // print_r($hashtags);
+
+    return new Ticket(
+        $id,
+        $ticket['user_id'],
+        $ticket['subject'],
+        $ticket['content'],
+        $hashtags,
+        $replies,
+        $statusHistory,
+        $dateTime,
+    );
+}
+
 ?>

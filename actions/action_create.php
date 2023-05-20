@@ -29,4 +29,6 @@
         $hashtags = explode(',', $_POST['hashtag']);
         createTicket($db, getUser($db, $_SESSION['username'])->getId(), $_POST['subject'], $_POST['content'], $hashtags);
     }
+
+    header('Location: ../pages/userlastticket.php');
 ?>
