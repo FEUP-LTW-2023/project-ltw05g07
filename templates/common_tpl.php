@@ -63,6 +63,7 @@
             </div>
             <div>
                 <p>Privacy Policy</p>
+                <a id="faq-go" href = "../pages/faq.php"> FAQ </a>
                 <p>Terms</p>
             </div>
             <div>

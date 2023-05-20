@@ -105,6 +105,13 @@ body > footer > div {
 #footer_link {
     color: #ef8354;
     text-decoration: none;
+    margin-top: 13px;
+}
+
+#faq-go{
+    color:white;
+    text-decoration: none;
+    margin-top: 13px;
 }
 
 /*#ticket_list {
