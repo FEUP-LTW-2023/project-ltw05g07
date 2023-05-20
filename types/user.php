@@ -4,6 +4,14 @@ enum UserType {
     case Client;
     case Admin;
     case Agent;
+
+    public function toString() {
+        return match($this) {
+            UserType::Client => 'Client',
+            UserType::Admin => 'Admin',
+            UserType::Agent => 'Agent'
+        };
+    }
 }
 
 class User {

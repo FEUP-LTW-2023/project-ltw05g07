@@ -1,18 +1,28 @@
-<?php function content(Ticket $ticket, User $user, TicketState $state) { ?>
+<?php 
+
+require_once('../database/user.php');
+function content(Ticket $ticket, bool $showReply = true) { 
+    $db = getDatabaseConnection();
+    $author = getUser($db, $ticket->getAuthorId()); ?>
     <section id = "ticket_content">
         <div id = "ticket_user">
             <div>
-                <?php if($state->name == "Solved")
+                <?php switch($ticket->getCurrentStatus()->getState()) {
+                    case TicketState::Solved:
                         echo '<i class="fa-solid fa-check fa-2xl" style="color: #018e42;"></i>';
-                    else if($state->name == "Assigned")
+                        break;
+                    case TicketState::Assigned:
                         echo '<i class="fa-solid fa-user-check fa-2xl" style="color: #f5c211;"></i>';
-                    else if($state->name == "Closed")
+                        break;
+                    case TicketState::Closed:
                         echo '<i class="fa-solid fa-lock fa-2xl" style="color: #c01c28;"></i>';
-                    else if($state->name == "Open")
+                        break;
+                    case TicketState::Open:
                         echo '<i class="fa-sharp fa-solid fa-lock-open fa-2xl" style="color: #018e42;"></i>';
+                    }
                 ?>
             </div>
-            <p><?=$user->username?></p>
+            <p><?=$author->getUsername()?></p>
         </div>
         <div id = "ticket_text">
             <header>
@@ -39,6 +49,7 @@
             </footer>
         </div>
     </section>
+    <?php if ($showReply) { ?>
     <h2 id = "replies_title">Replies</h2>
     <section id= "reply_content">
             <?php foreach($ticket->replies as $reply): ?>
@@ -52,11 +63,12 @@
             <?php endforeach; ?>
     </section>
     <form id="reply_form"action="../actions/action_add_reply.php" method="post">
-        <input type="hidden" name="user_id" value="<?=$user->id?>">
-        <input type="hidden" name="ticket_id" value="<?=$ticket->id?>">
+        <input type="hidden" name="user_id" value="<?=$author->getId()?>">
+        <input type="hidden" name="ticket_id" value="<?=$ticket->getId()?>">
         <textarea name="comment" id="comment" cols="30" rows="10" placeholder="Write your reply here..."></textarea>
         <button type="submit">Reply</button>
     </form>
-    </main>
-    </body>
+    <?php } ?>
+    <!-- </main> -->
+    <!-- </body> -->
 <?php } ?>

@@ -291,3 +291,33 @@ body > footer > div {
     padding-right: 10px;
     color: #ef8354;
 }
+
+.user-info {
+    width: 100vw;
+    grid-template-columns: auto;
+    grid-template-rows: auto;
+    margin-top: 10em;
+    display: grid;
+    font-family: 'myFont2';
+    row-gap: 1em;
+    text-align: center;
+}
+
+.user-info > * { margin: 0; }
+
+.user-info > h1 { grid-area: 1 / 1 / span 1 / span 1; }
+
+.user-info > h2 {
+    margin-top: 1.5em;
+    grid-area: 1 / 1 / span 1 / span 1;
+    color: gray;
+}
+
+.user-info > h3 {
+    margin-top: 3.5em;
+    grid-area: 1 / 1 / span 1 / span 1;
+}
+
+.userinfo #ticket-content {
+    grid-area: 2 / 1 / span 1 / span 1;
+}

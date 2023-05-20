@@ -19,6 +19,6 @@ session_start();
     //print_r($user);
 
     common_header();
-    content($ticket, $user, $state);
+    content($ticket);
     common_footer();
 ?>
