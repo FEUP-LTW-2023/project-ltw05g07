@@ -58,7 +58,9 @@
         $_POST['password']
     );
     
-    $_SESSION['user'] = $_POST['username']; 
+    $_SESSION['username'] = $_POST['username'];
+    $_SESSION['user_id'] = $user->id;
+    $_SESSION['user_type'] = $user->type->name;
     //echo $_SESSION['user'];
     header('Location: ../pages/home.php');
     exit(0);
