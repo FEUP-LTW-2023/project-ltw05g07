@@ -69,6 +69,7 @@ foreach ($tickets as $ticket) {
 
     $ticket->user = $userData;
     $ticket->state = $stateString;
+    //echo $ticket->state;
 
     //$ticket->date = $ticket->date->format('Y-m-d H:i:s');
 
@@ -83,11 +84,12 @@ foreach ($tickets as $ticket) {
     //array_push($tickets, $ticket);
 }
 
+
 if ($stateFilter !== 'all') {
     $filteredTickets = array_filter($tickets, function ($ticket) use ($stateFilter) {
         return $ticket->state === $stateFilter;
     });
-    $tickets = $filteredTickets;
+    $tickets = array_values($filteredTickets);
 }
 
 

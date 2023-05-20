@@ -1,4 +1,6 @@
 <?php
+
+session_start(); 
 include_once('../templates/create_ticket_tpl.php');
 include_once('../templates/common_tpl.php');
 

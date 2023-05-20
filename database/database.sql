@@ -67,7 +67,7 @@ CREATE TABLE department (
 
 CREATE TABLE ticket_status (
     id INTEGER PRIMARY KEY,
-    status TEXT CHECK(status IN ('open', 'closed', 'assigned', 'resolved')) NOT NULL,
+    status TEXT CHECK(status IN ('open', 'closed', 'assigned', 'solved')) NOT NULL,
     change_status_date DATETIME NOT NULL
 );
 
@@ -172,21 +172,21 @@ insert into department (id, name) values (10, 'Services');
 
 
 insert into ticket_status (id, status, change_status_date) values (1, 'open', '2023-01-31 10:09:10');
-insert into ticket_status (id, status, change_status_date) values (2, 'open', '2022-06-23 18:43:37');
-insert into ticket_status (id, status, change_status_date) values (3, 'open', '2022-12-01 02:10:52');
-insert into ticket_status (id, status, change_status_date) values (4, 'open', '2022-10-09 08:23:24');
-insert into ticket_status (id, status, change_status_date) values (5, 'open', '2022-10-11 14:26:06');
-insert into ticket_status (id, status, change_status_date) values (6, 'open', '2023-01-24 02:00:12');
-insert into ticket_status (id, status, change_status_date) values (7, 'open', '2022-11-05 20:23:10');
+insert into ticket_status (id, status, change_status_date) values (2, 'assigned', '2022-06-23 18:43:37');
+insert into ticket_status (id, status, change_status_date) values (3, 'solved', '2022-12-01 02:10:52');
+insert into ticket_status (id, status, change_status_date) values (4, 'closed', '2022-10-09 08:23:24');
+insert into ticket_status (id, status, change_status_date) values (5, 'assigned', '2022-10-11 14:26:06');
+insert into ticket_status (id, status, change_status_date) values (6, 'assigned', '2023-01-24 02:00:12');
+insert into ticket_status (id, status, change_status_date) values (7, 'solved', '2022-11-05 20:23:10');
 insert into ticket_status (id, status, change_status_date) values (8, 'open', '2022-11-25 10:44:59');
 insert into ticket_status (id, status, change_status_date) values (9, 'open', '2022-05-01 22:23:18');
 insert into ticket_status (id, status, change_status_date) values (10, 'open', '2022-12-13 09:53:41');
 
 
-insert into ticket_department (id, ticket_id, department_id) values (1, 1, 1);
+insert into ticket_department (id, ticket_id, department_id) values (1, 1, 2);
 insert into ticket_department (id, ticket_id, department_id) values (2, 2, 2);
 insert into ticket_department (id, ticket_id, department_id) values (3, 3, 3);
-insert into ticket_department (id, ticket_id, department_id) values (4, 4, 4);
+insert into ticket_department (id, ticket_id, department_id) values (4, 4, 2);
 insert into ticket_department (id, ticket_id, department_id) values (5, 5, 5);
 insert into ticket_department (id, ticket_id, department_id) values (6, 6, 6);
 insert into ticket_department (id, ticket_id, department_id) values (7, 7, 7);

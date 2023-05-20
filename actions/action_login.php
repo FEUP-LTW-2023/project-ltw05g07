@@ -4,16 +4,21 @@
     require_once('../database/connection.php');
     require_once('../database/user.php');
 
+
     $db = getDatabaseConnection();
 
     $user = getUser($db, $_POST['username']);
 
-    if ($user != null && $user->verifyCredentials(password_hash($_POST['password'], PASSWORD_DEFAULT))) {
+    if ($user != null && password_verify($_POST['password'], $user->passwordHash)) {
         echo "success";
-        $_SESSION['user'] = $_POST['username'];
-        header('Location: ../pages/register.php');
+        $_SESSION['username'] = $_POST['username'];
+        $_SESSION['user_id'] = $user->id;
+        $_SESSION['user_type'] = $user->type->name;
+        //echo $_SESSION['user'];
+        header('Location: ../pages/home.php');
     } else {
         header('Location: ../pages/login.php');
+        //print_r($user->type->name);
         echo "Invalid credentials!";
     }
 

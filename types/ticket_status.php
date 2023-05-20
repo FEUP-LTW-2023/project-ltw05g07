@@ -4,14 +4,14 @@ enum TicketState {
     case Open;
     case Assigned;
     case Closed;
-    case Resolved;
+    case Solved;
 
     public function toString() : String {
         return match($this) {
             TicketState::Open => 'open',
             TicketState::Assigned => 'assigned',
             TicketState::Closed => 'closed',
-            TicketState::Resolved => 'resolved'
+            TicketState::Solved => 'solved'
         };
     }
 
@@ -20,7 +20,7 @@ enum TicketState {
             'open' => TicketState::Open,
             'assigned' => TicketState::Assigned,
             'closed' => TicketState::Closed,
-            'resolved' => TicketState::Resolved
+            'solved' => TicketState::Solved
         };
     }
 }

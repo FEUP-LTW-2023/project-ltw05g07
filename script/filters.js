@@ -22,7 +22,7 @@ function applyFilters(){
                 console.log(request.responseText);
                 const tickets = JSON.parse(request.responseText);
 
-                console.log(tickets);
+                //console.log("here" + tickets);
 
                 tickets.forEach(function(ticket){
                     var date = new Date(ticket.date.date);

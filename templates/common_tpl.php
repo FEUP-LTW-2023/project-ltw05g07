@@ -10,8 +10,6 @@
         <link href="../css/style.css" rel="stylesheet">
         <link href="../css/layout.css" rel="stylesheet">
         <link href="../css/forms.css" rel="stylesheet">
-        <script src="../script/utils.js" defer></script>
-        <script src="../script/verify.js" defer></script>
         <?php if(isset ($css_files)) {
             foreach ($css_files as $css_file) {
                 $css_file = "../css/" . "$css_file"; ?>
@@ -29,7 +27,7 @@
                 <h1>TicketPilot</h1>
 
             <?php
-                if (isset($_SESSION['id'])) output_logout($_SESSION['name']);
+                if (isset($_SESSION['username'])) output_logout($_SESSION['username']);
                 else output_login();
             ?>
         </header>

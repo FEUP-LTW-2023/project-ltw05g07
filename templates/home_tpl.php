@@ -21,6 +21,7 @@
             <option value="solved">Solved</option>
             <option value="closed">Closed</option>
         </select>
+        <a id = "create_ticket" href="../pages/create.php"><button>Create Ticket</button></a>
             </div>
         <div id = "ticket_list"></div>
         <script src="../script/filters.js"></script>

@@ -58,7 +58,8 @@
         $_POST['password']
     );
     
-    $_SESSION['user'] = $_POST['username'];
-    header('Location: ../pages/login.php');
+    $_SESSION['user'] = $_POST['username']; 
+    //echo $_SESSION['user'];
+    header('Location: ../pages/home.php');
     exit(0);
 ?>

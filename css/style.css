@@ -142,6 +142,25 @@ body > footer > div {
 
 }
 
+#create_ticket{
+    margin-right: 0px;
+    margin-left: auto;
+}
+
+#create_ticket > button {
+    margin-right: 0px;
+    margin-left: auto;
+    background-color: #ef8354;
+    color: #fff;
+    width: 150px;
+    height: 50px;
+    border-radius: 20px;
+    border: none;
+    font-size: large;
+    box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.4);
+    font-family: 'myFont2';
+}
+
 #ticket_content {
     display: flex;
     text-align: center;
