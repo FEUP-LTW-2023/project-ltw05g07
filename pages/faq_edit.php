@@ -2,6 +2,21 @@
 require_once('../database/connection.php');
 require_once('../database/faq.php');
 require_once('../templates/common_tpl.php');
+
+session_start();
+
+if (!isset($_SESSION['username'])) {
+    header('Location: login.php');
+    exit(0);
+} else {
+    $db = getDatabaseConnection();
+    $user = getUser($db, $_SESSION['username']);
+    if ($user->getType() != UserType::Admin) {
+        header('Location: home.php');
+        exit(0);
+    }
+}
+
 $db = getDatabaseConnection();
 $id=$_GET["id"];
 $faq=getRow($db,$id);

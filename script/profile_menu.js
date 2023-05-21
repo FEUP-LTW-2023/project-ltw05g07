@@ -252,6 +252,7 @@ xhr.onreadystatechange = function () {
 xhr.send();
           break;
         case 'web-menus':
+          document.getElementById('ticket_list').innerHTML = '';
           console.log('Loading Web Menus content...');
           break;
         default:

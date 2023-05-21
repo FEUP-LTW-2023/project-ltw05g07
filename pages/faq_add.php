@@ -3,6 +3,18 @@ include_once('../templates/common_tpl.php');
 require_once('../database/connection.php');
 require_once('../database/faq.php');
 
+if (!isset($_SESSION['username'])) {
+    header('Location: login.php');
+    exit(0);
+} else {
+    $db = getDatabaseConnection();
+    $user = getUser($db, $_SESSION['username']);
+    if ($user->getType() != UserType::Admin) {
+        header('Location: home.php');
+        exit(0);
+    }
+}
+
 common_header();
 ?>    
     <section id = "faq-form">

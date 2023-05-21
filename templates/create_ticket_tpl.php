@@ -2,21 +2,7 @@
 require_once('../database/connection.php');
 require_once('../database/user.php');
 
-
-
-
-function view() { ?>
-
-    <section id = "view">
-        <header>
-            <h1>My Tickets</h1>
-        </header>
-        <footer>
-            <p>Want to create a ticket? <a href="create.php">Create ticket</a></p>
-        </footer>
-<?php } ?>
-
-<?php function create(array $departments) { ?>
+function create(array $departments) { ?>
     <section id = "create">
         <header>
             <h1>Create a Ticket</h1>

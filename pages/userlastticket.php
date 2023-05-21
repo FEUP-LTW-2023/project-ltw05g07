@@ -17,7 +17,8 @@ if (isset($_SESSION['username'])) {
     common_header();
     content($ticket);
     common_footer();
+} else  {
+    header('Location: login.php');
+    exit(0);
 }
-
-else header('Location: ../pages/login.php');
 ?>

@@ -13,17 +13,6 @@ $db = getDatabaseConnection();
 
 $departments = getUniqueDepartments($db);
 
-//print_r($departments);
-
-//$admins = getDepartmentAdmins($db, 1);
-//print_r($admins);
-
-
-
-//$tickets = getTicketsFromDepartment($db, intval("4"));
-
-//print_r($tickets);
-
 common_header();
 mainview($departments);
 common_footer();

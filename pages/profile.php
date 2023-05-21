@@ -10,7 +10,7 @@ require_once('../types/user.php');
 session_start();
 
 if ($_SESSION['username'] == null) {
-    header('Location: ' . $_SERVER['HTTP_REFERER']);
+    header('Location: home.php');
     exit(0);
 }
 

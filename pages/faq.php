@@ -5,9 +5,12 @@ session_start();
 include_once('../templates/common_tpl.php');
 include_once('../database/faq.php');
 require_once('../database/connection.php');
+require_once('../database/user.php');
+
 
 $db = getDatabaseConnection();
 $faqs = getFAQ($db);
+$user = getUser($db, $_SESSION['username']);
 
 common_header();
 
@@ -32,10 +35,18 @@ common_header();
                         </div>
                     </div>
                 </div>
+            <?php if ($user->getType() == UserType::Admin) { ?>
+                <a href="faq_edit.php?id=<?=$faq['id']?>"><button>Edit</button></a>
+            <?php } ?>
             <?php endforeach; ?>
         </div>
     </div>
+    <?php if ($user->getType() == UserType::Admin) { ?>
+        <a id="faq_add" href="faq_add.php"><button>Add</button></a>
+    <?php } ?>
 </section>
+
+
 <?php
 common_footer();
 ?>

@@ -9,9 +9,9 @@ require_once('../types/ticket_status.php');
 
 $db = getDatabaseConnection();
 
-$user = $_SESSION['user_id'];
+$user = getUser($db, $_SESSION['username']);
 
-$tickets = getAllUserTicketsDefault($db, $user);
+$tickets = getAllUserTicketsDefault($db, $user->getId());
 
 foreach ($tickets as $ticket) {
     $userID = $ticket->user_id; 
