@@ -91,6 +91,24 @@ function &getAllTickets(PDO &$db) : array {
     return $tickets;
 }
 
+function &getAllUserTicketsDefault(PDO &$db, int $id) : array {
+    $stmt = $db->prepare(
+        'SELECT *
+        FROM ticket
+        WHERE user_id = ?;'
+    );
+    $stmt->execute(array($id));
+
+    $ticket_info = $stmt->fetchAll();
+    $tickets = array();
+
+    foreach($ticket_info as $ticket) {
+        array_push($tickets, getTicketDefault($db, $ticket['id']));
+    }
+
+    return $tickets;
+}
+
 function getAllUserTickets(PDO &$db, int $id) {
     $stmt = $db->prepare(
         'SELECT *

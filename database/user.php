@@ -41,6 +41,7 @@ function getUserDefault(PDO &$db, int|String $idOrUsername) : User {
 
     $stmt->execute(array($idOrUsername));
     $user = $stmt->fetch();
+
     
     return new User(
         $user['id'],
@@ -69,6 +70,23 @@ function getUser(PDO &$db, int|String $idOrUsername) : User {
         $user['last_name'],
         $user['email'],
         getUserType($db, $user['id']));
+}
+
+function getAllUsers(PDO &$db) : array {
+    $stmt = $db->query('SELECT * FROM users');
+    $users = array();
+
+    while ($row = $stmt->fetch()) {
+        $id = $row['id'];
+        $user = getUserDefault($db, $id);
+
+        
+        if ($user !== null) {
+            $users[] = $user;
+        }
+    }
+    //print_r($tickets);
+    return $users;
 }
 
 
@@ -129,4 +147,30 @@ function addUser(PDO &$db, String &$username, String &$firstName, String &$lastN
     }
 
     $stmt->execute(array(getUser($db, $username)->getId()));
+}
+function updateUserType(PDO &$db, int $userId, UserType $newType): void {
+    // Delete existing user type entry for the given user
+    $deleteStmt = $db->prepare('DELETE FROM client WHERE id = ?;');
+    $deleteStmt->execute([$userId]);
+
+    $deleteStmt = $db->prepare('DELETE FROM admin WHERE id = ?;');
+    $deleteStmt->execute([$userId]);
+
+    $deleteStmt = $db->prepare('DELETE FROM agent WHERE id = ?;');
+    $deleteStmt->execute([$userId]);
+
+    // Insert new user type entry based on the new type
+    switch ($newType) {
+        case UserType::Client:
+            $insertStmt = $db->prepare('INSERT INTO client(id) VALUES(?);');
+            break;
+        case UserType::Admin:
+            $insertStmt = $db->prepare('INSERT INTO admin(id) VALUES(?);');
+            break;
+        case UserType::Agent:
+            $insertStmt = $db->prepare('INSERT INTO agent(id) VALUES(?);');
+            break;
+    }
+
+    $insertStmt->execute([$userId]);
 }

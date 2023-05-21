@@ -12,6 +12,13 @@ enum UserType {
             UserType::Agent => 'Agent'
         };
     }
+    public static function fromString(String &$userType) : UserType {
+        return match($userType) {
+            'Client' => UserType::Client,
+            'Admin' => UserType::Admin,
+            'Agent' => UserType::Agent
+        };
+    }
 }
 
 class User {
@@ -78,6 +85,8 @@ class User {
         $this->firstName = $firstName;
         $this->lastName = $lastName;
         $this->email = $email;
+        
+        
     }
 }
 

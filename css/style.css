@@ -321,3 +321,98 @@ body > footer > div {
 .userinfo #ticket-content {
     grid-area: 2 / 1 / span 1 / span 1;
 }
+
+
+
+#sse1
+{
+    /*You can decorate the menu's container, such as adding background images through this block*/
+    background-color: #fff;
+    height: 60px;
+    padding: 15px;
+    border-radius: 3px;
+    box-sizing: content-box;
+}
+#sses1
+{
+    margin:0 auto;/*This will make the menu center-aligned. Removing this line will make the menu align left.*/
+}
+#sses1 ul 
+{ 
+    position: relative;
+    list-style-type: none;
+    float:left;
+    padding:0;margin:0;
+    border-bottom:solid 1px #004E98;
+}
+#sses1 li
+{
+    float:left;
+    list-style-type: none;
+    padding:0;margin:0;background-image:none;
+}
+/*CSS for background bubble*/
+#sses1 li.highlight
+{
+    background-color:#1775cd;
+    top:58px;
+    height:2px;
+    border-bottom:solid 1px #004E98;
+    z-index: 1;
+    position: absolute;
+    overflow:hidden;
+}
+#sses1 li a
+{
+    box-sizing: content-box;
+    height:52px;
+    padding-top: 8px;
+    margin: 0 20px;/*used to adjust the distance between each menu item. Now the distance is 20+20=40px.*/
+    color: #000;
+    font-family: 'myFont';
+    font-size: 30px;
+    text-align: center;
+    text-decoration: none;
+    float: left;
+    display: block;
+    position: relative;
+    z-index: 2;
+}
+
+.card {
+    border: 1px solid #ccc;
+    font-family: 'MyFont2';
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.card h2 {
+    margin-top: 0;
+}
+
+.card p {
+    margin: 10px 0;
+}
+
+.card form {
+    margin-top: 20px;
+  }
+  
+  .card select {
+    padding: 5px;
+    font-size: 14px;
+  }
+  
+  .card  button {
+    padding: 8px 15px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .card button:hover {
+    background-color: #45a049;
+  }

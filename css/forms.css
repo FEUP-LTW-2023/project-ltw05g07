@@ -304,7 +304,7 @@ form * {
     cursor: pointer;
 }
 
-select{
+#create > select{
     height: 25px;
     margin: 5px;
     box-sizing: border-box;
@@ -315,6 +315,6 @@ select{
     text-align: center;
 }
 
-select:hover{
+#create > select:hover{
     cursor: pointer;
 }
