@@ -84,23 +84,25 @@ var sse1 = function () {
                 footer.id = 'ticket_footer';
 
                 // Create the hashtags container div
-                var hashtagsContainerDiv = document.createElement('div');
-                hashtagsContainerDiv.id = 'hashtags_container';
+                var departmentContainerDiv = document.createElement('div');
+                departmentContainerDiv.id = 'hashtags_container';
 
                 // Create the hashtags paragraph
-                var hashtagsParagraph = document.createElement('p');
-                hashtagsParagraph.id = 'hashtags';
+                var departmentParagraph = document.createElement('p');
+                departmentParagraph.id = 'hashtags';
 
-                hashtagsParagraph.textContent = 'Hashtags: ';
+                departmentParagraph.textContent = 'Department: ';
 
                 // Loop through the hashtags array and create the text content
-                var hashtagsString = '';
-                for (var i = 0; i < ticket.hashtags.length; i++) {
-                    hashtagsString += ticket.hashtags[i] + ' ';
-                }
+                /*var departmentString = '';
+                for (var i = 0; i < ticket.department.length; i++) {
+                    departmentString += ticket.department[i] + ' ';
+                }*/
+
+
 
                 // Set the text content of the paragraph element
-                hashtagsParagraph.textContent += hashtagsString;
+                departmentParagraph.textContent += ticket.department;
 
                 // Loop through the hashtags array and create the hashtags string
                 //var hashtagsString = '';
@@ -111,7 +113,7 @@ var sse1 = function () {
 
 
                 // Append the hashtags paragraph to the hashtags container div
-                hashtagsContainerDiv.appendChild(hashtagsParagraph);
+                departmentContainerDiv.appendChild(departmentParagraph);
 
                 // Create the date container div
                 var dateContainerDiv = document.createElement('div');
@@ -126,7 +128,7 @@ var sse1 = function () {
                 dateContainerDiv.appendChild(dateParagraph);
 
                 // Append the hashtags container div and date container div to the footer
-                footer.appendChild(hashtagsContainerDiv);
+                footer.appendChild(departmentContainerDiv);
                 footer.appendChild(dateContainerDiv);
 
                 div.appendChild(header);
