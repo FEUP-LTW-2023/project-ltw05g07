@@ -29,13 +29,16 @@ common_header(); ?>
   <div id="sses1">
     <ul>
         <li><a href="?menu=1&skin=2&p=Javascript-Menus" onclick="loadContent(event, 'my-tickets')">My Tickets</a></li>
-        <li><a href="?menu=1&skin=2&p=Horizontal-Menus" onclick="loadContent(event, 'users')">Users</a></li>
+        <?php if ($user->getType() == UserType::Admin) { ?>
+            <li><a href="?menu=1&skin=2&p=Horizontal-Menus" onclick="loadContent(event, 'users')">Users</a></li>
+        <?php } ?>
         <li><a href="?menu=1&skin=2&p=Web-Menus" onclick="loadContent(event, 'web-menus')">Web Menus</a></li>
     </ul>
   </div>
 </div>
 <div id = "ticket_list"></div>
 <div id = "user_list"></div>
+<div id="option_list"></div>
 
 
 <?php common_footer(); ?> 

@@ -14,6 +14,7 @@ var sse1 = function () {
             if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
                 console.log(xhr.responseText);
               var tickets = JSON.parse(xhr.responseText);
+              document.getElementById('ticket_list').innerHTML = '';
               // Process the retrieved tickets and update the content
               // For example, you can iterate over the tickets and create HTML elements to display them
               tickets.forEach(function(ticket){

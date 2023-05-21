@@ -71,7 +71,6 @@ body > footer > div {
 
 #default_header > nav > ul > li{
     display: inline-block;
-    padding: 0.5em;
     margin: 0.5em;
 }
 
@@ -398,21 +397,29 @@ body > footer > div {
 
 .card form {
     margin-top: 20px;
-  }
-  
-  .card select {
+}
+
+.card select {
     padding: 5px;
     font-size: 14px;
-  }
-  
-  .card  button {
+}
+
+.card  button {
     padding: 8px 15px;
     background-color: #4CAF50;
     color: white;
     border: none;
     cursor: pointer;
-  }
-  
-  .card button:hover {
+}
+
+.card button:hover {
     background-color: #45a049;
-  }
+}
+
+header > h1 {
+    justify-self: left;
+}
+
+.nav_link {
+    padding: 0;
+}

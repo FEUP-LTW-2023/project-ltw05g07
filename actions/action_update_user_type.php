@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $newType = UserType::fromString($newType);
 
   $user = getUser($db, intval($userId)); 
-  $result = updateUserType($db,intval($userId), $newType);
+  updateUserType($db,intval($userId), $newType);
 
 
 

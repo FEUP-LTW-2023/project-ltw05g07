@@ -16,7 +16,7 @@ $db = getDatabaseConnection();
 $user = $_SESSION['user_id'];
 
 
-$users = getAllUsers($db, $user);
+$users = getAllUsers($db);
 
 
 
