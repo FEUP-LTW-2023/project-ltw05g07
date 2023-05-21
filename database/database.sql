@@ -45,7 +45,8 @@ CREATE TABLE ticket (
     user_id INTEGER NOT NULL,
     subject VARCHAR(255) NOT NULL,
     content TEXT NOT NULL,
-    hashtags VARCHAR(255) NOT NULL,
+    --hashtags VARCHAR(255) NOT NULL,
+    department VARCHAR(255) NOT NULL,
     post_date DATETIME NOT NULL,
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
@@ -61,7 +62,7 @@ CREATE TABLE reply (
 );
 
 CREATE TABLE department (
-    id IINTEGER PRIMARY KEY,
+    id INTEGER PRIMARY KEY,
     name VARCHAR(255) NOT NULL
 );
 
@@ -135,16 +136,16 @@ insert into agent (id) values (8);
 insert into agent (id) values (9);
 insert into agent (id) values (10);
 
-insert into ticket (id, user_id, subject, content, hashtags, post_date) values (1, 1, 'luctus et ultrices posuere cubilia curae mauris viverra diam vitae quam suspendisse potenti nullam porttitor lacus at turpis donec', 'eu magna vulputate luctus cum sociis natoque penatibus et magnis dis parturient montes', 'est phasellus sit amet erat nulla tempus vivamus in felis eu sapien cursus vestibulum proin eu mi', '2022-11-14 16:25:45');
-insert into ticket (id, user_id, subject, content, hashtags, post_date) values (2, 2, 'maecenas pulvinar lobortis est phasellus sit amet erat nulla tempus vivamus in', 'id luctus nec molestie sed justo pellentesque viverra pede ac diam', 'consectetuer eget rutrum at lorem integer tincidunt ante vel ipsum praesent', '2022-10-18 16:42:00');
-insert into ticket (id, user_id, subject, content, hashtags, post_date) values (3, 3, 'vulputate justo in blandit ultrices enim lorem ipsum dolor sit', 'viverra eget congue eget semper rutrum nulla nunc purus phasellus in felis donec semper sapien a', 'morbi porttitor lorem id ligula suspendisse ornare consequat lectus in est risus auctor sed tristique in tempus sit amet', '2022-07-20 07:36:43');
-insert into ticket (id, user_id, subject, content, hashtags, post_date) values (4, 4, 'laoreet ut rhoncus aliquet pulvinar sed nisl nunc rhoncus dui vel sem sed sagittis nam', 'sapien in sapien iaculis congue vivamus metus arcu adipiscing molestie hendrerit at vulputate vitae nisl', 'rhoncus dui vel sem sed sagittis nam congue risus semper porta volutpat', '2022-04-26 09:20:58');
-insert into ticket (id, user_id, subject, content, hashtags, post_date) values (5, 5, 'ut rhoncus aliquet pulvinar sed nisl nunc rhoncus dui vel sem sed sagittis nam congue', 'vel nulla eget eros elementum pellentesque quisque porta volutpat erat quisque erat eros viverra eget', 'ipsum aliquam non mauris morbi non lectus aliquam sit amet diam in', '2022-11-06 00:42:29');
-insert into ticket (id, user_id, subject, content, hashtags, post_date) values (6, 6, 'vehicula condimentum curabitur in libero ut massa volutpat convallis morbi odio odio elementum eu interdum eu tincidunt', 'quis turpis sed ante vivamus tortor duis mattis egestas metus aenean fermentum donec', 'interdum in ante vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere', '2022-09-19 18:11:23');
-insert into ticket (id, user_id, subject, content, hashtags, post_date) values (7, 7, 'dictumst aliquam augue quam sollicitudin vitae consectetuer eget rutrum at', 'a pede posuere nonummy integer non velit donec diam neque vestibulum', 'phasellus id sapien in sapien iaculis congue vivamus metus arcu adipiscing molestie hendrerit at vulputate vitae nisl aenean lectus', '2022-05-29 07:28:49');
-insert into ticket (id, user_id, subject, content, hashtags, post_date) values (8, 8, 'potenti nullam porttitor lacus at turpis donec posuere metus vitae ipsum aliquam non mauris morbi', 'elit ac nulla sed vel enim sit amet nunc viverra dapibus nulla suscipit ligula in lacus', 'sit amet justo morbi ut odio cras mi pede malesuada in imperdiet et commodo vulputate justo in blandit ultrices enim', '2023-02-25 21:42:45');
-insert into ticket (id, user_id, subject, content, hashtags, post_date) values (9, 9, 'orci vehicula condimentum curabitur in libero ut massa volutpat convallis morbi odio odio elementum eu interdum', 'vitae consectetuer eget rutrum at lorem integer tincidunt ante vel ipsum praesent blandit lacinia erat vestibulum sed magna', 'tincidunt in leo maecenas pulvinar lobortis est phasellus sit amet erat nulla tempus', '2022-09-01 13:05:40');
-insert into ticket (id, user_id, subject, content, hashtags, post_date) values (10, 10, 'volutpat in congue etiam justo etiam pretium iaculis justo in hac', 'vitae quam suspendisse potenti nullam porttitor lacus at turpis donec posuere metus vitae ipsum aliquam non mauris morbi non', 'accumsan odio curabitur convallis duis consequat dui nec nisi volutpat', '2022-09-30 16:24:59');
+insert into ticket (id, user_id, subject, content, department, post_date) values (1, 1, 'luctus et ultrices posuere cubilia curae mauris viverra diam vitae quam suspendisse potenti nullam porttitor lacus at turpis donec','Lorem ipsum dolor sit amet, consectetur adipiscing elit.', 'Business Development', '2022-11-14 16:25:45');
+insert into ticket (id, user_id, subject, content, department, post_date) values (2, 2, 'maecenas pulvinar lobortis est phasellus sit amet erat nulla tempus vivamus in', 'id luctus nec molestie sed justo pellentesque viverra pede ac diam', 'Sales', '2022-10-18 16:42:00');
+insert into ticket (id, user_id, subject, content, department, post_date) values (3, 3, 'vulputate justo in blandit ultrices enim lorem ipsum dolor sit', 'viverra eget congue eget semper rutrum nulla nunc purus phasellus in felis donec semper sapien a', 'Engineering', '2022-07-20 07:36:43');
+insert into ticket (id, user_id, subject, content, department, post_date) values (4, 4, 'laoreet ut rhoncus aliquet pulvinar sed nisl nunc rhoncus dui vel sem sed sagittis nam', 'sapien in sapien iaculis congue vivamus metus arcu adipiscing molestie hendrerit at vulputate vitae nisl', 'Research and Development', '2022-04-26 09:20:58');
+insert into ticket (id, user_id, subject, content, department, post_date) values (5, 5, 'ut rhoncus aliquet pulvinar sed nisl nunc rhoncus dui vel sem sed sagittis nam congue', 'vel nulla eget eros elementum pellentesque quisque porta volutpat erat quisque erat eros viverra eget', 'Support', '2022-11-06 00:42:29');
+insert into ticket (id, user_id, subject, content, department, post_date) values (6, 6, 'vehicula condimentum curabitur in libero ut massa volutpat convallis morbi odio odio elementum eu interdum eu tincidunt', 'quis turpis sed ante vivamus tortor duis mattis egestas metus aenean fermentum donec', 'Human Resources', '2022-09-19 18:11:23');
+insert into ticket (id, user_id, subject, content, department, post_date) values (7, 7, 'dictumst aliquam augue quam sollicitudin vitae consectetuer eget rutrum at', 'a pede posuere nonummy integer non velit donec diam neque vestibulum', 'Product Management', '2022-05-29 07:28:49');
+insert into ticket (id, user_id, subject, content, department, post_date) values (8, 8, 'potenti nullam porttitor lacus at turpis donec posuere metus vitae ipsum aliquam non mauris morbi', 'elit ac nulla sed vel enim sit amet nunc viverra dapibus nulla suscipit ligula in lacus', 'Support', '2023-02-25 21:42:45');
+insert into ticket (id, user_id, subject, content, department, post_date) values (9, 9, 'orci vehicula condimentum curabitur in libero ut massa volutpat convallis morbi odio odio elementum eu interdum', 'vitae consectetuer eget rutrum at lorem integer tincidunt ante vel ipsum praesent blandit lacinia erat vestibulum sed magna', 'Engineering', '2022-09-01 13:05:40');
+insert into ticket (id, user_id, subject, content, department, post_date) values (10, 10, 'volutpat in congue etiam justo etiam pretium iaculis justo in hac', 'vitae quam suspendisse potenti nullam porttitor lacus at turpis donec posuere metus vitae ipsum aliquam non mauris morbi non', 'Services', '2022-09-30 16:24:59');
 
 
 insert into reply (id, ticket_id, user_id, comment, reply_date) values (1, 1, 1, 'ultrices libero non mattis pulvinar nulla pede ullamcorper augue a suscipit', '2022-09-10 13:48:57');
@@ -183,10 +184,10 @@ insert into ticket_status (id, status, change_status_date) values (9, 'open', '2
 insert into ticket_status (id, status, change_status_date) values (10, 'open', '2022-12-13 09:53:41');
 
 
-insert into ticket_department (id, ticket_id, department_id) values (1, 1, 2);
+insert into ticket_department (id, ticket_id, department_id) values (1, 1, 1);
 insert into ticket_department (id, ticket_id, department_id) values (2, 2, 2);
 insert into ticket_department (id, ticket_id, department_id) values (3, 3, 3);
-insert into ticket_department (id, ticket_id, department_id) values (4, 4, 2);
+insert into ticket_department (id, ticket_id, department_id) values (4, 4, 4);
 insert into ticket_department (id, ticket_id, department_id) values (5, 5, 5);
 insert into ticket_department (id, ticket_id, department_id) values (6, 6, 6);
 insert into ticket_department (id, ticket_id, department_id) values (7, 7, 7);

@@ -163,7 +163,6 @@ form * {
     margin: 5px;
     box-sizing: border-box;
     border: 2px solid #ccc;
-    border-radius: 4px;
     background-color: #f8f8f8;
     resize: none;
 }
@@ -188,6 +187,7 @@ form * {
     background-color: #006dd3;
 }
 
+
 #faq-form{
     width: 100%;
     display: block;
@@ -197,6 +197,8 @@ form * {
     margin: 0.3em 0;
     font-family: 'myFont';
 }
+
+
 
 #faq-form > h1{
     color:#004E98;
@@ -282,7 +284,6 @@ form * {
     margin: 5px;
     box-sizing: border-box;
     border: 2px solid #ccc;
-    border-radius: 4px;
     background-color: #f8f8f8;
     resize: none;
 }
@@ -300,5 +301,20 @@ form * {
 }
 
 #create_ticket>button:hover{
+    cursor: pointer;
+}
+
+select{
+    height: 25px;
+    margin: 5px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+    resize: none;
+    text-align: center;
+}
+
+select:hover{
     cursor: pointer;
 }

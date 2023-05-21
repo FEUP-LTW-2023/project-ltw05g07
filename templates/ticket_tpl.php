@@ -30,15 +30,17 @@ function content(Ticket $ticket, bool $showReply = true) {
             </header>
             <p><?= $ticket->content ?></p>
             <footer id = "ticket_footer">
-                <div id = "hashtags_container">
-                <p id = "hashtags" >Hashtags:
+                <div id = "department_container">
+                <p id = "department" >Department:
                 <?php
                     // Loop through the hashtags array and create a string with the text to display
-                    $hashtagsString = "";
+                    /*$hashtagsString = "";
                     foreach ($ticket->hashtags as $hashtag) {
                         $hashtagsString .= $hashtag . " ";
                     }
                     echo $hashtagsString; // Output the string
+                    */
+                    echo $ticket->department;
                     ?>
                 </p>
                 </div>

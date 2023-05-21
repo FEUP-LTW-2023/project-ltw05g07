@@ -91,35 +91,35 @@ function applyFilters(){
                     var footer = document.createElement('footer');
                     footer.id = 'ticket_footer';
 
-                    // Create the hashtags container div
-                    var hashtagsContainerDiv = document.createElement('div');
-                    hashtagsContainerDiv.id = 'hashtags_container';
+                    // Create the department container div
+                    var departmentContainerDiv = document.createElement('div');
+                    departmentContainerDiv.id = 'department_container';
 
-                    // Create the hashtags paragraph
-                    var hashtagsParagraph = document.createElement('p');
-                    hashtagsParagraph.id = 'hashtags';
+                    // Create the department paragraph
+                    var departmentParagraph = document.createElement('p');
+                    departmentParagraph.id = 'department';
 
-                    hashtagsParagraph.textContent = 'Hashtags: ';
+                    departmentParagraph.textContent = 'Department: ';
 
-                    // Loop through the hashtags array and create the text content
-                    var hashtagsString = '';
-                    for (var i = 0; i < ticket.hashtags.length; i++) {
-                        hashtagsString += ticket.hashtags[i] + ' ';
-                    }
-
+                    // Loop through the department array and create the text content
+                    var departmentString = ticket.department;
+                    /*for (var i = 0; i < ticket.department.length; i++) {
+                        departmentString += ticket.department[i] + ' ';
+                    }*/
+                    console.log(departmentFilter);
                     // Set the text content of the paragraph element
-                    hashtagsParagraph.textContent += hashtagsString;
+                    departmentParagraph.textContent += departmentString;
 
-                    // Loop through the hashtags array and create the hashtags string
-                    //var hashtagsString = '';
-                    /*<?php foreach ($ticket->hashtags as $hashtag): ?>
-                    hashtagsString += '<?= $hashtag ?> ';
+                    // Loop through the department array and create the department string
+                    //var departmentString = '';
+                    /*<?php foreach ($ticket->department as $hashtag): ?>
+                    departmentString += '<?= $hashtag ?> ';
                     <?php endforeach; ?>
-                    hashtagsParagraph.textContent = 'Hashtags: ' + hashtagsString;*/
+                    departmentParagraph.textContent = 'department: ' + departmentString;*/
 
 
-                    // Append the hashtags paragraph to the hashtags container div
-                    hashtagsContainerDiv.appendChild(hashtagsParagraph);
+                    // Append the department paragraph to the department container div
+                    departmentContainerDiv.appendChild(departmentParagraph);
 
                     // Create the date container div
                     var dateContainerDiv = document.createElement('div');
@@ -133,8 +133,8 @@ function applyFilters(){
                     // Append the date paragraph to the date container div
                     dateContainerDiv.appendChild(dateParagraph);
 
-                    // Append the hashtags container div and date container div to the footer
-                    footer.appendChild(hashtagsContainerDiv);
+                    // Append the department container div and date container div to the footer
+                    footer.appendChild(departmentContainerDiv);
                     footer.appendChild(dateContainerDiv);
 
                     div.appendChild(header);

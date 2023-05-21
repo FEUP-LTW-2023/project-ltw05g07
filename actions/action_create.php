@@ -20,14 +20,14 @@
         echo "Content required!";
     } 
 
-    if ($_POST['hashtag'] == null){
+    if ($_POST['department'] == null){
         header('Location: ../pages/create.php');
-        echo "Hashtag required!";
+        echo "Department required!";
     }
     else {
         echo "sucess";
-        $hashtags = explode(',', $_POST['hashtag']);
-        createTicket($db, getUser($db, $_SESSION['username'])->getId(), $_POST['subject'], $_POST['content'], $hashtags);
+        //$hashtags = explode(',', $_POST['hashtag']);
+        createTicket($db, getUser($db, $_SESSION['username'])->getId(), $_POST['subject'], $_POST['content'], $_POST['department']/*$hashtags*/);
     }
 
     header('Location: ../pages/userlastticket.php');

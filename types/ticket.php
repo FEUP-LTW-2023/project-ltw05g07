@@ -8,7 +8,9 @@ class Ticket {
     public int $user_id;
     public String $subject;
     public String $content;
-    public array $hashtags;
+    //public array $hashtags;
+    public String $department;
+
     public array $replies;
     public array $statusHistory;
     public DateTime $date;
@@ -27,8 +29,8 @@ class Ticket {
         return $this->content;
     }
 
-    public function getHashtags() : array {
-        return $this->hashtags;
+    public function getDepartment() : String {
+        return $this->department;
     }
 
     public function getReplies() : array {
@@ -57,23 +59,23 @@ class Ticket {
         }
     }
 
-    public function __construct8(int $id,int $user_id, String &$subject, String &$content, array &$hashtags, array &$replies, array &$statusHistory, DateTime &$date) {
+    public function __construct8(int $id,int $user_id, String &$subject, String &$content, String &$department, array &$replies, array &$statusHistory, DateTime &$date) {
         $this->id = $id;
         $this->user_id = $user_id;
         $this->subject = $subject;
         $this->content = $content;
-        $this->hashtags = $hashtags;
+        $this->department = $department;
         $this->replies = $replies;
         $this->statusHistory = $statusHistory;
         $this->date = $date;
     }
 
-    public function __construct6(int $id,int $user_id, String &$subject, String &$content, array &$hashtags, DateTime &$date) {
+    public function __construct6(int $id,int $user_id, String &$subject, String &$content, String &$department, DateTime &$date) {
         $this->id = $id;
         $this->user_id = $user_id;
         $this->subject = $subject;
         $this->content = $content;
-        $this->hashtags = $hashtags;
+        $this->department = $department;
         $this->date = $date;
     }
 }

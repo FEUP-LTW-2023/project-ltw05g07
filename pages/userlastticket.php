@@ -12,14 +12,13 @@ session_start();
 
     $db = getDatabaseConnection();
     if(isset($_SESSION['username'])){
-    $ticket = getTicketbyUser($db,getUser($db, $_SESSION['username'])->getId());
+    $ticket = getTicketbyUser($db,$_SESSION['user_id']);
     /*getUser($db, $_SESSION['username'])->getId()*/
-    $user = getUser($db, $ticket->user_id);
     $state = getLatestState($db, $ticket->id);
     //print_r($user);
 
     common_header();
-    content($ticket, $user, $state);
+    content($ticket);
     common_footer();
 
     }

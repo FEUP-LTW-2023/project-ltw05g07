@@ -11,6 +11,7 @@ $db = getDatabaseConnection();
 //console.log($_GET['department']);
 //echo $_GET['department'];   
 
+
 $departmentFilter = $_GET['department'];
 $sortDate = isset($_GET['sort']) ? $_GET['sort'] : 'newest'; 
 $stateFilter = $_GET['state'];

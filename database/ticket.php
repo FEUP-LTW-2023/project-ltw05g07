@@ -4,8 +4,10 @@ require_once('../types/ticket.php');
 require_once('../database/ticket_status.php');
 require_once('../types/reply.php');
 
+
 require_once('user.php');
 require_once('reply.php');
+require_once('department.php');
 
 require_once('utils.php');
 
@@ -24,7 +26,7 @@ function &getTicket(PDO &$db, int $id) : ?Ticket {
     $replies = getReplies($db, $id);
     $statusHistory = getStatusHistory($db, $id);
     $dateTime = getDateTimeFromString($ticket['post_date']);
-    $hashtags = explode(',', $ticket['hashtags']);
+    //$hashtags = explode(',', $ticket['hashtags']);
 
     //echo sizeof($hashtags);
     //echo $ticket['user_id'];
@@ -36,7 +38,8 @@ function &getTicket(PDO &$db, int $id) : ?Ticket {
         $ticket['user_id'],
         $ticket['subject'],
         $ticket['content'],
-        $hashtags,
+        //$hashtags,
+        $ticket['department'],
         $replies,
         $statusHistory,
         $dateTime,
@@ -54,7 +57,7 @@ function &getTicketDefault(PDO &$db, int $id) : ?Ticket {
     //print_r($ticket);
     //echo $ticket['id'];
     $dateTime = getDateTimeFromString($ticket['post_date']);
-    $hashtags = explode(',', $ticket['hashtags']);
+    //$hashtags = explode(',', $ticket['hashtags']);
 
     //var_dump($dateTime);    
 
@@ -65,7 +68,8 @@ function &getTicketDefault(PDO &$db, int $id) : ?Ticket {
         $ticket['user_id'],
         $ticket['subject'],
         $ticket['content'],
-        $hashtags,
+        //$hashtags,
+        $ticket['department'],
         $dateTime,
         //$ticket['post_date'],
     );
@@ -116,11 +120,21 @@ function getLastTicketId(PDO &$db) : int {
     return intval($stmt->fetch());
 }
 
-function createTicket(PDO &$db, int $userId, String &$subject, String &$content, array &$hashtags) : void {
+function createTicket(PDO &$db, int $userId, String &$subject, String &$content, String &$departmentID) : void {
     $date = date('Y-m-d H:i:s'); 
 
     $stmt = $db->prepare(
-        'INSERT INTO ticket(user_id, subject, content, hashtags, post_date)
+        'SELECT *
+        FROM department
+        WHERE id = ?;'
+    );
+    $stmt->execute(array($departmentID));
+    $department = $stmt->fetch();
+
+
+
+    $stmt = $db->prepare(
+        'INSERT INTO ticket(user_id, subject, content, department, post_date)
         VALUES(?, ?, ?, ?, ?);'
     );
 
@@ -128,7 +142,8 @@ function createTicket(PDO &$db, int $userId, String &$subject, String &$content,
         $userId,
         $subject,
         $content,
-        implode(',', $hashtags),
+        $department['name'],
+        //implode(',', $hashtags),
         $date
     ));
 
@@ -175,12 +190,13 @@ function &getTicketbyUser(PDO &$db, int $user_id) : ?Ticket {
     $ticket = $stmt->fetch();
     //print_r($ticket);
     //echo $ticket['id'];
-
+    
     $id = $ticket['id'];
     $replies = getReplies($db, $id);
     $statusHistory = getStatusHistory($db, $id);
     $dateTime = getDateTimeFromString($ticket['post_date']);
-    $hashtags = explode(',', $ticket['hashtags']);
+    //$hashtags = explode(',', $ticket['hashtags']);
+    
 
     //echo sizeof($hashtags);
     //echo $ticket['user_id'];
@@ -192,7 +208,8 @@ function &getTicketbyUser(PDO &$db, int $user_id) : ?Ticket {
         $ticket['user_id'],
         $ticket['subject'],
         $ticket['content'],
-        $hashtags,
+        //$hashtags,
+        $ticket['department'],
         $replies,
         $statusHistory,
         $dateTime,

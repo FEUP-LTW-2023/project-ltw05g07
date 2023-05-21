@@ -107,4 +107,6 @@ function getTicketsFromDepartment(PDO &$db, int $departmentId) : array {
     return $tickets;
 }
 
+
+
 ?>
