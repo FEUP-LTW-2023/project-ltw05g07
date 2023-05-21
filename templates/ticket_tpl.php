@@ -65,7 +65,7 @@ function content(Ticket $ticket, bool $showReply = true) {
             <?php endforeach; ?>
     </section>
     <form id="reply_form"action="../actions/action_add_reply.php" method="post">
-        <input type="hidden" name="user_id" value="<?=$author->getId()?>">
+        <input type="hidden" name="user_id" value=<?=$_SESSION['user_id']?>>
         <input type="hidden" name="ticket_id" value="<?=$ticket->getId()?>">
         <textarea name="comment" id="comment" cols="30" rows="10" placeholder="Write your reply here..."></textarea>
         <button type="submit">Reply</button>
